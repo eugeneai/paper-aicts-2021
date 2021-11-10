@@ -4,7 +4,7 @@ LATEXMK=latexmk -lualatex -latexoption=-shell-escape
 
 # TARGET=talk-mda-lod-2019-12-zh-cn
 PAPER=paper-aicts-cherkashin
-TARGET=talk-aicts-2021-21-06
+TARGET=talk-aicts-2021-12-06
 
 
 run: paper present
