@@ -1,0 +1,511 @@
+
+%% The first command in your LaTeX source must be the \documentclass command.
+%%
+%% Options:
+%% twocolumn : Two column layout.
+%% hf: enable header and footer.
+\documentclass[
+% twocolumn,
+% hf,
+]{ceurart}
+\usepackage{amsmath,amssymb,longtable,hhline}
+\usepackage{doi}
+\def\doitext{DOI:}
+
+%%
+%% One can fix some overfulls
+\sloppy
+
+%%
+%% Minted listings support
+%% Need pygment <http://pygments.org/> <http://pypi.python.org/pypi/Pygments>
+% \usepackage{listings}
+\usepackage{minted}
+\setminted{fontsize=\footnotesize,mathescape}
+\usepackage{hyperref}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,           % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=false,        % show Acrobat’s toolbar?
+    pdfmenubar=false,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={},    % title
+    pdfauthor={Evgeny Cherkashin},     % author
+    pdfsubject={model driven architecture},   % subject of the document
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
+  }
+
+\usepackage{pifont}
+\graphicspath{{pics/}}
+
+
+%% auto break lines
+% \lstset{breaklines=true}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% Rights management information.
+%% CC-BY is default license.
+\copyrightyear{2021}
+\copyrightclause{Copyright for this paper by its authors.
+  Use permitted under Creative Commons License Attribution 4.0
+  International (CC BY 4.0).}
+
+%%
+%% This command is for the conference information
+\conference{2nd International Workshop on Advanced Information and Computation Technologies and Systems, December XX--XX, 2021, Irkutsk, Russia}
+
+%%
+%% The "title" command
+\title{Technologies of Semantic WEB as an environment of application development and integration}
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+\author[1,2]{Evgeny A. Cherkashin}[%
+orcid=0000-0003-2428-2471,
+email=eugeneai@icc.ru,
+url=https://github.org/eugeneai,
+]
+\address[1]{Matrosov Institute for System Dynamics and Control Theory of Siberian Branch of Russian Academy of Sciences, 134 Lermontov St, Irkutsk, 664033, Russian Federation}
+
+\address[2]{Institute for Mathematics and Information Technologies, Irkutsk State University, 20~Gagarina Bulv, Irkutsk, 664003, Russian Federation}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+  A clear and well-documented \LaTeX{} document is presented as an
+  article formatted for publication by CEUR-WS in a conference
+  proceedings. Based on the ``ceurart'' document class, this article
+  presents and explains many of the common variations, as many well as
+  of the formatting elements an author may use in the preparation of
+  the documentation of their work.
+\end{abstract}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\begin{keywords}
+  knowledge graph \sep
+  geographical information system \sep
+  semantic web \sep
+  storing flexible data \sep
+  one-page web application
+\end{keywords}
+
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\section{Introduction}
+
+CEUR-WS's article template provides a consistent \LaTeX{} style for
+use across CEUR-WS publications, and incorporates accessibility and
+metadata-extraction functionality. This document will explain the
+major features of the document class\footnote{You can use this
+  document as the template for preparing your publication. We
+  recommend using the latest version of the ceurart style.}.
+
+If you are new to publishing with CEUR-WS, this document is a valuable
+guide to the process of preparing your work for publication.
+
+The ``\verb|ceurart|'' document class can be used to prepare articles
+for any CEUR-WS publication, and for any stage of publication, from
+review to final ``camera-ready'' copy with {\itshape very} few changes
+to the source.
+
+This class depends on the following packages
+for its proper functioning:
+
+\begin{itemize}
+\item \verb|natbib.sty| for citation processing;
+\item \verb|geometry.sty| for margin settings;
+\item \verb|graphicx.sty| for graphics inclusion;
+\item \verb|hyperref.sty| optional package if hyperlinking is required in
+  the document;
+\item \verb|fontawesome5.sty| optional package for bells and whistles.
+\end{itemize}
+
+All the above packages are part of any
+standard \LaTeX{} installation.
+Therefore, the users need not be
+bothered about downloading any extra packages.
+
+\section{Modifications}
+
+Modifying the template --- including but not limited to: adjusting
+margins, typeface sizes, line spacing, paragraph and list definitions,
+and the use of the \verb|\vspace| command to manually adjust the
+vertical spacing between elements of your work --- is not allowed.
+
+\section{Template parameters}
+
+There are a number of template
+parameters which modify some part of the \verb|ceurart| document class.
+This parameters are enclosed in square
+brackets and are a part of the \verb|\documentclass| command:
+% \begin{lstlisting}
+%   \documentclass[parameter]{ceurart}
+% \end{lstlisting}
+
+Frequently-used parameters, or combinations of parameters, include:
+\begin{itemize}
+\item {\verb|twocolumn|}: Two column layout.
+\item {\verb|hf|}: Enable header and footer\footnote{You can enable
+    the display of page numbers in the final version of the entire
+    collection. In this case, you should adhere to the end-to-end
+    pagination of individual papers.}.
+\end{itemize}
+
+\section{Front matter}
+
+\subsection{Title Information}
+
+The titles of papers should be either all use the emphasizing
+capitalized style or they should all use the regular English (or
+native language) style. It does not make a good impression if you or
+your authors mix the styles.
+
+Use the \verb|\title| command to define the title of your work. Do not
+insert line breaks in your title.
+
+\subsection{Title variants}
+
+% \verb|\title| command have the below options:
+% \begin{itemize}
+% \item \verb|title|: Document title. This is default option.
+% \begin{lstlisting}
+% \title[mode=title]{This is a title}
+% \end{lstlisting}
+% You can just omit it, like as follows:
+% \begin{lstlisting}
+% \title{This is a title}
+% \end{lstlisting}
+
+% \item \verb|alt|: Alternate title.
+% \begin{lstlisting}
+% \title[mode=alt]{This is a alternate title}
+% \end{lstlisting}
+
+% \item \verb|sub|: Sub title.
+% \begin{lstlisting}
+% \title[mode=sub]{This is a sub title}
+% \end{lstlisting}
+% You can just use \verb|\subtitle| command, as follows:
+% \begin{lstlisting}
+% \subtitle{This is a sub title}
+% \end{lstlisting}
+
+% \item \verb|trans|: Translated title.
+% \begin{lstlisting}
+% \title[mode=trans]{This is a translated title}
+% \end{lstlisting}
+
+% \item \verb|transsub|: Translated sub title.
+% \begin{lstlisting}
+% \title[mode=transsub]{This is a translated sub title}
+% \end{lstlisting}
+% \end{itemize}
+
+\subsection{Authors and Affiliations}
+
+Each author must be defined separately for accurate metadata
+identification. Multiple authors may share one affiliation. Authors'
+names should not be abbreviated; use full first names wherever
+possible. Include authors' e-mail addresses whenever possible.
+
+\verb|\author| command have the below options:
+
+\begin{itemize}
+\item \verb|style|: Style of author name (chinese)
+\item \verb|prefix|: Prefix
+\item \verb|suffix|: Suffix
+\item \verb|degree|: Degree
+\item \verb|role|: Role
+\item \verb|orcid|: ORCID
+\item \verb|email|: E-mail
+\item \verb|url|: URL
+\end{itemize}
+
+Author names can have some kinds of marks and notes:
+\begin{itemize}
+\item affiliation mark: \verb|\author[<num>]|.
+% \item email: \verb|\ead{<email>}|,
+% \item url: \verb|\ead[url]{<url>}|.
+\end{itemize}
+
+The author names and affiliations could be formatted in two ways:
+\begin{enumerate}
+\item Group the authors per affiliation.
+\item Use an explicit mark to indicate the affiliations.
+\end{enumerate}
+
+Author block example:
+% \begin{lstlisting}
+% \author[1,2]{Author Name}[%
+%     prefix=Prof.,
+%     degree=D.Sc.,
+%     role=Researcher,
+%     orcid=0000-0000-000-0000,
+%     email=name@example.com,
+%     url=https://name.example.com
+% ]
+
+% \address[1]{Affiliation #1}
+% \address[2]{Affiliation #2}
+% \end{lstlisting}
+
+% \subsection{Abstract and Keywords}
+
+% Abstract shall be entered in an environment that starts
+% with \verb|\begin{abstract}| and ends with
+% \verb|\end{abstract}|.
+
+% \begin{lstlisting}
+% \begin{abstract}
+%   This is an abstract.
+% \end{abstract}
+% \end{lstlisting}
+
+% The key words are enclosed in a \verb|keywords|
+% environment. Use \verb|\sep| to separate keywords.
+
+% \begin{lstlisting}
+% \begin{keywords}
+%   First keyword \sep
+%   Second keyword \sep
+%   Third keyword \sep
+%   Fourth keyword
+% \end{keywords}
+% \end{lstlisting}
+
+At the end of front matter add \verb|\maketitle| command.
+
+\section{Sectioning Commands}
+
+Your work should use standard \LaTeX{} sectioning commands:
+\verb|\section|, \verb|\subsection|,
+\verb|\subsubsection|, and
+\verb|\paragraph|. They should be numbered; do not remove
+the numbering from the commands.
+
+Simulating a sectioning command by setting the first word or words of
+a paragraph in boldface or italicized text is not allowed.
+
+\section{Tables}
+
+The ``\verb|ceurart|'' document class includes the ``\verb|booktabs|''
+package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
+high-quality tables.
+
+Table captions are placed \textit{above} the table.
+
+Because tables cannot be split across pages, the best placement for
+them is typically the top of the page nearest their initial cite.  To
+ensure this proper ``floating'' placement of tables, use the
+environment \verb|table| to enclose the table's contents and the
+table caption. The contents of the table itself must go in the
+\verb|tabular| environment, to be aligned properly in rows and
+columns, with the desired horizontal and vertical rules.
+
+Immediately following this sentence is the point at which
+Table~\ref{tab:freq} is included in the input file; compare the
+placement of the table here with the table in the printed output of
+this document.
+
+\begin{table*}
+  \caption{Frequency of Special Characters}
+  \label{tab:freq}
+  \begin{tabular}{ccl}
+    \toprule
+    Non-English or Math&Frequency&Comments\\
+    \midrule
+    \O & 1 in 1,000& For Swedish names\\
+    $\pi$ & 1 in 5& Common in math\\
+    \$ & 4 in 5 & Used in business\\
+    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
+  \bottomrule
+\end{tabular}
+\end{table*}
+
+To set a wider table, which takes up the whole width of the page's
+live area, use the environment \verb|table*| to enclose the table's
+contents and the table caption.  As with a single-column table, this
+wide table will ``float'' to a location deemed more
+desirable. Immediately following this sentence is the point at which
+Table~\ref{tab:commands} is included in the input file; again, it is
+instructive to compare the placement of the table here with the table
+in the printed output of this document.
+
+\begin{table}
+  \caption{Some Typical Commands}
+  \label{tab:commands}
+  \begin{tabular}{ccl}
+    \toprule
+    Command &A Number & Comments\\
+    \midrule
+    \texttt{{\char'134}author} & 100& Author \\
+    \texttt{{\char'134}table}& 300 & For tables\\
+    \texttt{{\char'134}table*}& 400& For wider tables\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Math Equations}
+
+You may want to display math equations in three distinct styles:
+inline, numbered or non-numbered display.  Each of the three are
+discussed in the next sections.
+
+\subsection{Inline (In-text) Equations}
+
+A formula that appears in the running text is called an inline or
+in-text formula.  It is produced by the \verb|math| environment,
+which can be invoked with the usual
+\verb|\begin| \ldots \verb|\end| construction or with
+the short form \verb|$| \ldots \verb|$|. You can use any of the symbols
+and structures, from $\alpha$ to $\omega$, available in
+\LaTeX~\cite{Lamport:LaTeX};
+this section will simply show a few
+examples of in-text equations in context. Notice how this equation:
+\begin{math}
+  \lim_{n\rightarrow \infty} \frac{1}{n} = 0,
+\end{math}
+set here in in-line math style, looks slightly different when
+set in display style.  (See next section).
+
+\subsection{Display Equations}
+
+A numbered display equation---one set off by vertical space from the
+text and centered horizontally---is produced by the \verb|equation|
+environment. An unnumbered display equation is produced by the
+\verb|displaymath| environment.
+
+Again, in either environment, you can use any of the symbols and
+structures available in \LaTeX{}; this section will just give a couple
+of examples of display equations in context.  First, consider the
+equation, shown as an inline equation above:
+\begin{equation}
+  \lim_{n\rightarrow \infty} \frac{1}{n} = 0.
+\end{equation}
+Notice how it is formatted somewhat differently in
+the \verb|displaymath|
+environment.  Now, we'll enter an unnumbered equation:
+\begin{displaymath}
+  S_{n} = \sum_{i=1}^{n} x_{i} ,
+\end{displaymath}
+and follow it with another numbered equation:
+\begin{equation}
+  \lim_{x \to 0} (1 + x)^{1/x} = e
+\end{equation}
+just to demonstrate \LaTeX's able handling of numbering.
+
+\section{Figures}
+
+The ``\verb|figure|'' environment should be used for figures. One or
+more images can be placed within a figure. If your figure contains
+third-party material, you must clearly identify it as such, as shown
+in the example below.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{sample-franklin}
+  \caption{1907 Franklin Model D roadster. Photograph by Harris \&
+    Ewing, Inc. [Public domain], via Wikimedia
+    Commons. (\url{https://goo.gl/VLCRBB}).}
+\end{figure}
+
+Your figures should contain a caption which describes the figure to
+the reader. Figure captions go below the figure. Your figures should
+also include a description suitable for screen readers, to
+assist the visually-challenged to better understand your work.
+
+Figure captions are placed below the figure.
+
+\section{Citations and Bibliographies}
+
+The use of Bib\TeX{} for the preparation and formatting of one's
+references is strongly recommended. Authors' names should be complete
+--- use full first names (``Donald E. Knuth'') not initials
+(``D. E. Knuth'') --- and the salient identifying features of a
+reference should be included: title, year, volume, number, pages,
+article DOI, etc.
+
+The bibliography is included in your source document with these two
+commands, placed just before the \verb|\end{document}|
+command:
+% \begin{lstlisting}
+% \bibliography{bibfile}
+% \end{lstlisting}
+where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
+suffix, of the Bib\TeX{} file.
+
+\begin{acknowledgments}
+
+  The results were obtained within the state assignment of the Ministry of Education and Science of Russia, the project ``Methods and technologies of a cloud-based service-oriented digital platform for collecting, storing and processing large volumes of multi-format interdisciplinary data and knowledge based on the use of artificial intelligence, a model-driven approach and machine learning'', No.~FWEW-2021-0005 (State registration No.~121030500071-2).
+
+  The results obtained with the use of the network infrastructure of Telecommunication center of collective use ``Integrated information-computational network of Irkutsk scientific-educational complex'' (\url{http://net.icc.ru}).
+
+The~R\&D on GIS-viewer of faults involved the Centre of Geodynamics and Geochronology equipment at the Institute of the Earth's Crust, Siberian Branch of the Russian Academy of Sciences (grant No.~075-15-2021-682).   This study direction was partially carried out within the basic budgetary research project ``Modern geodynamics, mechanisms of destruction of the lithosphere and hazardous geological processes in Central Asia'', No.~FWEF-2021-0009.
+
+The~development of the~infrastructure for Mothur command transformation to Rapidminer dataflow diagram is supported by the project of Irkutsk scientific center of Siberian branch of Russian Academy of sciences, grant No 4.2.
+
+\end{acknowledgments}
+%%
+%% Define the bibliography file to be used
+% \bibliography{sample-ceur}
+
+\begin{thebibliography}{99}
+
+\bibitem{lod} C.~Bizer, T.~Heath, T.~Berners-Lee, Linked Data -- The Story So Far. Int. J. Semantic Web Inf. Syst., 5 (2009), pp.~1--22. \doi{10.4018/jswis.2009081901}
+
+\bibitem{lunina} O.~V.~Lunina.  The digital map of the Pliocene–Quaternary crustal faults in the Southern East Siberia and the adjacent Northern Mongolia. Geodynamics \& Tectonophysics.  V.~7(3) (2016). pp.~407-434. (in Russian) \doi{10.5800/GT-2016-7-3-0215}
+
+\bibitem{hogan} A.~Hogan, E.~Blomqvist, M.~Cochez, C.~D’Amato \emph{et al}. Knowledge Graphs, 2020. \url{https://arxiv.org/abs/2003.02320v5}
+
+\bibitem{afs} A.~A.~Gladkov, O.~V.~Lunina. Cartographic service ``Activetectonics''. \url{http://activetectonics.ru/} (access date: 20-Sep-2021)
+
+\bibitem{foss} M.~Leidig, R.~Teeuw. Free software: A review, in the context of disaster management. International Journal of Applied Earth Observation and Geoinformation, 42 (2015), pp.~49-56. \doi{10.1016/j.jag.2015.05.012}.
+
+\bibitem{lgd} C.~Stadler, J.~Lehmann, K.~Höffner, S.~Auer. LinkedGeoData: A core for a web of spatial open data. Semantic Web 3 (2012) 333–354. \doi{10.3233/SW-2011-0052}
+
+\bibitem{geolink} M.~Cheatham, A.~Krisnadhi, R.~Amini, P.~Hitzler, \emph{et al}. The GeoLink knowledge graph, Big Earth Data, 2:2 (2018), pp.~131-143. \doi{10.1080/20964471.2018.1469291}
+
+\bibitem{abid} T.~Abid, H.~Zarzour. Integrating linked open data in geographical information system. Procs. of. International Conference on Information Technology for Organization Development. Oct 19-20, 2014, University of Tebessa, Tebessa, Algeria (2014).
+
+\bibitem{iwaniak1} A.~Iwaniak, I.~Kaczmarek, M.~Strzelecki, J.~Lukowicz, P.~Jankowski. Enriching and improving the quality of linked data with GIS. Open Geosciences, Vol.~8, 1~(2016) pp.~323-336. \doi{10.1515/geo-2016-0020}
+
+\bibitem{iwaniak17} A.~Iwaniak, M.~Leszczuk, M.~Strzelecki, F.~Harvey, I.~Kaczmarek. A Novel Approach for Publishing Linked Open Geodata from National Registries with the Use of Semantically Annotated Context Dependent Web Pages. International Journal of Geo-Information. 6, 252 (2017). \doi{10.3390/ijgi6080252}
+
+\bibitem{zont19} E.~Cherkashin, A.~Shigarov, V.~Paramonov. Representation of MDA transformation with logical objects. International Multi-Conference on Engineering, Computer and Information Sciences (SIBIRCON), Novosibirsk, Russia. (2019) 0913--0918 \doi{10.1109/SIBIRCON48586.2019.8958008}
+
+\bibitem{authoring} E.~Cherkashin, A.~Shigarov, V.~Paramonov, A.~Mikhailov, Digital archives supporting document content inference, Procs. of 42-nd International Convention on Information and Communication Technology Electronics and Microelectronics (MIPRO), May, 20–24, 2019. pp. 1037-1042. \doi{10.23919/MIPRO.2019.8757196}
+
+\bibitem{gisviewer} E.~Cherkashin, O.~Lunina, L.~Demyanov, A.~Tsygankov. Web-GIS viewer for active faults data represented as a knowledge graph. Proceedings for 4th Scientific-practical Workshop Information Technologies: Algorithms, Models, Systems. Irkutsk, Russia, September 14, 2021. CEUR-WS.org, online \url{http://ceur-ws.org/Vol-2984/paper8.pdf}
+
+\end{thebibliography}
+\section{Online Resources}
+
+The sources for the viewer are being developed at Github, URL:~\url{https://github.com/De17eon/GRL}.
+
+\end{document}
+
+%%
+%% End of file
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "paper-aicts-cherkashin.tex"
+%%% End:
