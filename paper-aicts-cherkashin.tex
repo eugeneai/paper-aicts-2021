@@ -49,6 +49,8 @@
 %% auto break lines
 % \lstset{breaklines=true}
 
+\newcommand{\ns}[1]{\textbf{\texttt{#1}}}
+
 %%
 %% end of the preamble, start of the body of the document source.
 \begin{document}
@@ -110,24 +112,111 @@ url=https://github.org/eugeneai,
 
 \section{Introduction}
 
-Since the beginning of 2000s the development of the Semantic Web technologies became [awesome] mostly in describing software domains, representing semantics withing data objects, and define first-order knowledge \cite{}.  A number of tools for automation of conceptual model design and model conversion were proposed as well \cite{}.  The R\& D at present is carried on in developing applications, improving and standardizing vocabularies, devising tools for solving particular problems.
+Since the beginning of 2000s the development of the Semantic Web technologies became [awesome] mostly in describing software domains, representing semantics withing data objects, and define first-order knowledge \cite{}.  A number of tools for automation of conceptual model design and model conversion were proposed as well \cite{}.  The R\&D at present is carried on in developing applications, improving and standardizing vocabularies, devising tools for solving particular problems.
 
 Unification of routine tasks resulted in development common techniques for storing and processing data, which are aggregated around term ``knowledge graph'' (KG).  These include data representation formats, vocabulary standards, query languages, tools for accessing and management KG.  Software development techniques are mediated with properties of the new-created resources and their APIs\footnote{Abbreviation of Application Programming Interface}.  Many internet resources provide common ways of formalized domain data access using query endpoints, and these endpoints allow one to organize federated data access.
 
-[.... About itch of personal vocabularies development instead to utilize similar ones .. Problem of searching resources ....  metadata storages ... a general vocabularies ... Term ontology = vocabulary ]
+Domain specialists sometimes prefer develop local vocabularies instead of spending time for the routine work of Internet surfing for existing conceptual models and their enrichment.  This is due to underdevelopment of the metadata resources (meta vocabularies) due to lack a domain classification system as compared, \emph{e.g.} to Universal Decimal Classification (UDC) used in bibliography.  Vocabularies also can have common parts, describing the same or similar entities with different term or ways, more adopted to a specific problem solving.
+
+Unitizing standardized vocabularies as domain conceptual models (ontologies) in our projects allow us to compare other research groups point of view to a problem with a formalized context, figure out underestimated and not fully formularized aspects of a domain under investigation/automation.  This is the similar information source as scientific papers, but having concrete formal presentation of the information objects, allowing one to get rid of particular uncertainties.  Another advantage of standardization is construction of a common ground of research, development, data formalization and interchange formats and semantics.  This include aggregation of results of pattern recognition, applications of machine learning with their following use as facts in knowledge-based systems.
+
+The aim of this paper is to present a contemporary approach for SW and KG utilization in development applications in context of improving software developers and researchers performance.  A number of examples were reviewer showing advantageous points of the technologies application.
 
 
-[we have by our opiinion a good examples of SW and KG applications in the following fields .... ]  [ ... The KG and SW tech are well integrated with existing knowledge based AI systems [ if not use the equivalence]].
+\section{Contemporary SW tools review}
+\label{sec:sw-tools}
 
-The aim of this paper is to present a contemporary approach for SW and KG utilization in development applications.
+Semantic Web technologies from the developer point of view include the following assets:
+\begin{enumerate}
+\item Global identification of the entities via URI\footnote{Abbreviation of Universal Resource Identifiers}, IRI\footnote{Abbreviation of International Resource Identifier}, URL\footnote{Abbreviation of Universal Resource Locator}, which are essentially the same notions but reflecting different representation properties;
+\item Conceptual set-theoretic and category-theoretic data representation as relation between resources and literals represented with triples of a form \texttt{<subject, predicate, object>};
+\item Triples used in a description of a domain form a corresponding sematic graph, conditionally subdivided into terminological subgraph (T-Box) and instance subgraph (A-Box);
+\item Graph presentation formats and techniques as files, databases, markups of documents, a data flow between applicants; \label{kg1}
+\item Public vocabularies, mostly A-Boxes (databases), for example \texttt{DBPedia.org}, a formalized version of \texttt{Wikipedia.org}. % wikidata
+\item For graphs being databases a query services are implemented to allow users obtain its data by portions, as well as implement modifications;
+\item API and libraries for processing files and documents with semantic data acquisition (\emph{e.g.} by extraction of the markup).
+\item Software for graph data processing;
+\item Validation and verification services allowing one to explore correctness and consistency of the technologies use and domain conceptual models. \label{kg2}
+\end{enumerate}
+The assets \ref{kg1}--\ref{kg2} form knowledge graph technological aspect of the SW that gained in the last decade special R\&D directions.
+
+Each entity being described in SW has its unique IRI, which is its virtual or real internet address locating it, \emph{e.g.} in a document most usually in a context of other resource.  Using IRIs in applications solves fundamental problem of cross-domain and cross-application object identification and forming a basis of common data processing environment.  Entities of various abstract levels can be designated an IRI, including vocabulary definitions (\emph{namespaces}), data types, data containers (files, databases).
+
+Triples are combination of two or three IRIs.  Subject and predicate are always IRIs.  Objects are either IRI or a literal.  Literals are values of basic types (numbers, strings, dates, \emph{etc.}), usually accompanied with metadata (type designator and/or a language tag).  Types are defined in a vocabulary \texttt{<\url{http://www.w3.org/2001/XMLSchema}\#>}, having well-known namespace abbreviation \ns{xs}\footnote{Hereafter, all well-known namespace names will be given after its IRI in brackets with bold monospace font.}.  Language tag is used to define string values taking into account its affiliation to a cultural context.  It is recognized with KG tools and utilized at presentation layers of the software.
+
+Namespaces are convenient instruments of resource definition.  For example \verb|integer| literal \verb|42^^<http://www.w3.org/2001/XMLSchema#integer>| can be reduced to \verb|42^^xs:integer|, where \verb|xs| is namespace prefix of term \verb|integer|.  Most of KG representation formats allow to define a default namespace, which terms are used without prefix.   Almost any conceptual model of a domain represented as KG comprises entities taken from multiple vocabularies, and namespaces allow to specify the origin of a term.  Three-component tuple (triple) being outside its KG context sometimes added the fourth component, its KG IRI (quadruple).
+
+Much R\&D efforts since 2001 \cite{tbl} were spend to develop SW data representation formats and their coupling with document representation. The simplest way to provide a printed document with semantic representation is pointing user of software agent to an URL serving the data.  But this approach requires to implement two different procedures for document generation and its metadata.  That's why a RDFa\footnote{Abbreviation of Resource Description Framework attribute language} has been developed.  It allows developer of XHTML\footnote{HTML structures with strict XML restrictions obeyed} documents to add semantic layer inside the document.  The semantic markup is represented with special attributes and their values.  The hierarchical structure of XHTML is a matrix of hierarchical structure of document entities semantic relations.  The layer is extracted by XHTML/RDFa processing libraries.  There are other formats having the same expression capabilities as RDF but used for other purposes: \texttt{N-triples}, \texttt{Turtle}, \texttt{Notation~3}, \texttt{JSON-LD}.  The last one is an efficient way of coupling SW and various generic data storage, indexing and processing services.
+
+Among published global vocabularies, \texttt{DBPedia} was of most valuable for our projects.  It is used for concrete object or notion of physical world reference, \emph{e.g.} ``passport'' in law documents authoring \cite{}, naming (labeling) referenced objects in user interface with corresponding words in natural language \cite{github-db}.  Another useful resource is \texttt{Wordnet} converted in RDF triples.  It describes semantics of english words and various mutual relations.
+
+Access by program agents to the global resources are standardized as well.  Each serious vocabulary have API access point (endpoints) of form
+\verb|http[s]://<address>/sparql|\footnote{For example, see DBpedia access point at the URL \url{https://dbpedia.org/sparql}} supporting direct \texttt{GET}-queries returning a user form, and \texttt{SPARQL} \texttt{POST} query with answering \texttt{JSON} encoded tabular result.  The form is used to interactively test \texttt{SPARQL} queries before their incorporation in software agents.  All \texttt{SPARQL} endpoints support federated queries, \emph{i.e.} run subqueries on another servers.   For a personal user KG storage, a number of servers were developed, \emph{e.g.}, \texttt{GraphDB}, \texttt{Jena Fuseki}, \texttt{ClioPatria}.  Each has its extension engines.  \texttt{ClioPatria} extends with Prolog modules and allows one to implement KG processing on server side.
+
+KGs and their subgraphs are programmatically processed using libraries developed for all papular programming environments.  KG is represented with triple or quadruple set object.  The set is traversed, triples are filtered according to various criteria.  Filters are defined usually as patterns, where each of the components either a free variable/placeholder or a concrete value (IRI, literal), which must mach exactly.   Some libraries allow one execute \texttt{SPARQL} queries locally.  KG are evolved with adding new triples, as well as removing irrelevant ones.  The resulting modified KG is stored as files and published on a server.  An example of a federated SPARQL query is presented in Figure~\ref{fig:sparql-ex1}, which results in counting parts classes as the first level of a three widget.  Each class is named in Russian if \texttt{DBPedia} contains a corresponding label.  Otherwise label is figured out of IRI.  This query is running at a local server and initiates a subquery to \texttt{DBPedia.org} endpoint.
+
+\begin{figure}[bth]
+  \centering
+\begin{minted}{sparql}
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select * where {
+  ?class rdfs:subClassOf <http://dbpedia.org/resource/Electronic_component> .
+  bind(replace(strafter(str(?class),str(dbr:)),'_',' ') as ?class_name) .
+  OPTIONAL {
+    SERVICE <http://dbpedia.org/sparql> {
+      ?class rdfs:label ?title .
+      FILTER (
+        langMatches(lang(?title), 'ru')
+      )
+    }
+  }
+} limit 100
+\end{minted}
+  \caption{Example of a federated SPARQL query usage in a electronic component database}
+  \label{fig:sparql-ex1}
+\end{figure}
+
+Formalized representation of a domain, which is provided by SW techniques, is the basis of automatic  inference construction, thus modeling, \emph{e.g.}, problem-solving, resulting decision synthesis, theorem proving, domain verification.  The inference is implemented in various ways, all of them belong either to semantic inference, usually implemented as solving a corresponding CSP\footnote{Abbreviation of Constraint Satisfaction Problem}, or syntax-driven procedures that mediate the previous structures and infer one of special properties (Automatic Theorem Proving).  Theoretic research is being carried on classification the properties of vocabularies by complexity of verification and development software implementing it for these classes.  These software are parts of RDF-processing libraries and stand-alone system extensions.
+
+Our interest is located in inferring new objects using logic programming from domain models represented as KGs.  It allows developer to combine KG processing with other inferences in the same programming paradigm.  SWI-Prolog programming language environment and Logtalk extension is used for the purpose.  SWI system has library for representing and processing KG, and Logtalk is used to realize transformations providing the inference.  Object-oriented properties of Logtalk enable one to cope with generic disadvantaged of RDF\footnote{Requirements of triple tuple data representation.} with encapsulation, manipulate knowledge sets with extension, inheritance and composition, and represent inference in a generalized form of objects sending messages to each other.
+
+
+% TODO: Integration out of our architecture.
+
+\section{General architecture of applications based on KG}
+\label{sec:architecture}
+
+Some general words about architectures .... related to WEB.
+
+In order to present the general architecture of application development, we have to briefly speak about KG definitions and properties.
+
+\subsection{Knowledge graph properties as application basis}
+\label{sec:kg-as-basis}
+
+KGs changed the view point to the knowledge base as being a part of whole totality of knowledge, implying the obeying the global standards and techniques of its acquisition and processing \cite{hogan}.  The following outlines their definitions \cite{hogan}.
+ \begin{itemize}
+  \item Notions \emph{data} and \emph{knowledge} are converged into ``something is \emph{known}'';
+  \item KG contains, in general, data, relations, and metadata;
+  \item The same KG is being filled in and processed by different independent modules, \emph{e.g.}, withing SPARQL queries with UPDATE statements;
+  \item KG fundamental software development allow to \emph{postpone} the formal definition of a data schema;
+  \item There is three points of view to graph schemata: \emph{semantic}, which is aimed at generalization, \emph{validating}, reflecting semantic verification, checking completeness w.r.t. sets of predefined general relations, and \emph{emergent}, observed or deduced from exploitation experience, as a set of new generalized structures and \emph{refactoring} of the KG.
+  \end{itemize}
+
+
+
+\section{Discussion}
+\label{sec:disc}
+
+
+[we tried to collaborate with software developers using traditional approaches.  They are not interested as ]
 
 
 CEUR-WS's article template provides a consistent \LaTeX{} style for
 use across CEUR-WS publications, and incorporates accessibility and
 metadata-extraction functionality. This document will explain the
-major features of the document class\footnote{You can use this
-  document as the template for preparing your publication. We
-  recommend using the latest version of the ceurart style.}.
+major features of the document class.
 
 If you are new to publishing with CEUR-WS, this document is a valuable
 guide to the process of preparing your work for publication.
@@ -478,6 +567,8 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 % \bibliography{sample-ceur}
 
 \begin{thebibliography}{99}
+
+\bibitem{tbl} T.B.-L. Scientific American ...
 
 \bibitem{lod} C.~Bizer, T.~Heath, T.~Berners-Lee, Linked Data -- The Story So Far. Int. J. Semantic Web Inf. Syst., 5 (2009), pp.~1--22. \doi{10.4018/jswis.2009081901}
 
