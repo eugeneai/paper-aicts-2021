@@ -188,12 +188,12 @@ Our interest is located in inferring new objects using logic programming from do
 \section{General architecture of applications based on KG}
 \label{sec:architecture}
 
-Some general words about architectures .... related to WEB.
+Some general words about architectures .... related to WEB.  Modeled with component architecture.
 
 In order to present the general architecture of application development, we have to briefly speak about KG definitions and properties.
 
-\subsection{Knowledge graph properties as application basis}
-\label{sec:kg-as-basis}
+% \subsection{Knowledge graph properties as application basis}
+% \label{sec:kg-as-basis}
 
 KGs changed the view point to the knowledge base as being a part of whole totality of knowledge, implying the obeying the global standards and techniques of its acquisition and processing \cite{hogan}.  The following outlines their definitions \cite{hogan}.
  \begin{itemize}
@@ -204,6 +204,27 @@ KGs changed the view point to the knowledge base as being a part of whole totali
   \item There is three points of view to graph schemata: \emph{semantic}, which is aimed at generalization, \emph{validating}, reflecting semantic verification, checking completeness w.r.t. sets of predefined general relations, and \emph{emergent}, observed or deduced from exploitation experience, as a set of new generalized structures and \emph{refactoring} of the KG.
   \end{itemize}
 
+\begin{figure}[bth]
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{architecture-mda-lod-ext-general.pdf}
+  \end{center}
+  \begin{center}
+      \textbf{Abbreviations}\\[1ex]\scriptsize
+      T-Module is Transformation module,
+      MDA is Model-Driven Architecture,
+      CIM is Computationally Independent Model,
+      PIM is Platform Independent Model,
+      PSM is Platform Specific Model,
+      T-Box is Terminological Box,
+      A-Box is Instance Box,
+      A-Box is Instance Box,
+      NGS is Next-Generation Sequencing,
+      DB is Database.
+  \end{center}
+
+  \caption{Architecture of services}
+  \label{fig:arch-services}
+\end{figure}
 
 
 \section{Discussion}
