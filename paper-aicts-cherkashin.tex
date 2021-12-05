@@ -86,7 +86,7 @@ url=https://github.org/eugeneai,
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  Semantic Web technologies and standards are becoming one of productive assets for software development and integration on various levels of design and implementation.  This include OSI level 6 data representation, database and file storage formats, the source data for indexes, hypertext markup, source data for document authoring, representing abstract software models, \emph{etc}.  They also smoothly combined with development and data analysis tools, giving raise a new common-ground environment for realizing integration on the semantic level.
+  Semantic Web technologies and standards are becoming one of productive assets for software development and integration on various levels of design and implementation.  These include OSI level 6 data representation, database and file storage formats, the source data for indexes, hypertext markup, source data for document authoring, representing abstract software models, \emph{etc}.  They also smoothly combined with development and data analysis tools, giving raise a new common-ground environment for realizing integration on the semantic level.
 
   This paper presents the view on the Semantic Web technologies as data representation for software development tools with model analysis, transformation and retrospection capabilities.  Three examples are presented, exposing our experience.
 \end{abstract}
@@ -203,7 +203,7 @@ KGs changed the view point to the knowledge base as being a part of whole totali
   \item KG fundamental software development allow to \emph{postpone} the formal definition of a data schema;
   \item There is three points of view to graph schemata: \emph{semantic}, which is aimed at generalization, \emph{validating}, reflecting semantic verification, checking completeness w.r.t. sets of predefined general relations, and \emph{emergent}, observed or deduced from exploitation experience, as a set of new generalized structures and \emph{refactoring} of the KG.
   \end{itemize}
-
+With these general constraints, design of application modules are to be built on standardized data interchange formats, which are to be easily converted from and to KG representation, as well as applications are to be constructed out of service modules supporting SW endpoints (SPARQL) whenever possible.  Our applications are composition of modules showed in Figure~\ref{fig:arch-services}.
 \begin{figure}[bth]
   \begin{center}
     \includegraphics[width=0.9\linewidth]{architecture-mda-lod-ext-general.pdf}
@@ -225,6 +225,16 @@ KGs changed the view point to the knowledge base as being a part of whole totali
   \caption{Architecture of services}
   \label{fig:arch-services}
 \end{figure}
+
+The kernel module of applications is \texttt{KG server} (A2) built on the base of ClioPatria \cite{cliopatria} with web-server and Pengines plug-ins.  ClioPatria is a web-application implemented in SWI-Prolog \cite{swi} being ISO-compliant Prolog implementation.  KG functions are realized with SW package, supplied in standard SWI-Prolog distribution.  Pengines service enables SW web-applications requesting logical inference on the server side \cite{pengines} with integration of browser JavaScript environment for supporting input-output.  Pengines allows integration of Prolog programs as its plugins.  Kernel module stores A-~and T-boxes of applications, \emph{i.e.} it is application database.  Other modules support application (C3) with frequently used services.
+
+Authoring tool (B1) is used to provide document generation and integration \cite{sibiricon}.  This tool enables document content and structure inference in browser utilizing templates and data from other web pages and websites.  Programmer implements a view of an object as a web page with an extended version of RDFa.  The page are generated with any programming system, \emph{e.g.} PHP.  Authoring tool engine collects web page chunks and composing the document out of these chunks as a XHTML page.  This composed page can be stored in KG as set of triples and indexed in Text indexing module (C1), printed with browser's printing engine, or converted to PDF.  The tool allow user to change document content in WISYWIG mode in some extent.  Its general structure is defined by changing template at server side.
+
+Text indexing engine (C1) provides service for storing documents represented as KG triples, JSONs, and BLOBS of any format with corresponding text layers.  This module has two implementations.  One is build on Sphinx Search engine, and the second one is Elasticsearch.  Elasticsearch supports JSON as the only document format and easily integrated with KG using JSON-LD for triple representation.  Sphinx Search is much faster in text and database records indexing and consumes less RAM as implemented in C++.  The choice of an engine depends on the primary document representation to be used in application.
+
+BLOB stored documents having no markup usually contain useful data, which are to be revealed for application use.  They could be report data or scientific paper content represented as PDF, DJVU files or raster images. Data recognition is realized in PDF/Text document processing module (C2).  Data processing workers query Text indexing module for BLOB documents and add recognized text and high-order structure layers.  All obtained layers are stored in indexing database of C1, as well as data of interest can be converted in triples and sent to KG.
+
+Processing KG for the various purposed are presented as KB processing module (B3).
 
 
 \section{Discussion}
@@ -290,7 +300,6 @@ Frequently-used parameters, or combinations of parameters, include:
     pagination of individual papers.}.
 \end{itemize}
 
-\section{Front matter}
 
 \subsection{Title Information}
 
@@ -616,6 +625,9 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 \bibitem{authoring} E.~Cherkashin, A.~Shigarov, V.~Paramonov, A.~Mikhailov, Digital archives supporting document content inference, Procs. of 42-nd International Convention on Information and Communication Technology Electronics and Microelectronics (MIPRO), May, 20–24, 2019. pp. 1037-1042. \doi{10.23919/MIPRO.2019.8757196}
 
 \bibitem{gisviewer} E.~Cherkashin, O.~Lunina, L.~Demyanov, A.~Tsygankov. Web-GIS viewer for active faults data represented as a knowledge graph. Proceedings for 4th Scientific-practical Workshop Information Technologies: Algorithms, Models, Systems. Irkutsk, Russia, September 14, 2021. CEUR-WS.org, online \url{http://ceur-ws.org/Vol-2984/paper8.pdf}
+
+\bibitem{cliopatria}
+\bibitem{sibircon} Logical objects
 
 \end{thebibliography}
 \section{Online Resources}
