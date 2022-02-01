@@ -1,7 +1,7 @@
 %% The first command in your LaTeX source must be the \documentclass command.
 %%
 %% Options:
-%% twocolumn : Two column layout.
+%% two-column: Two-column layout.
 %% hf: enable header and footer.
 \documentclass[
 % twocolumn,
@@ -85,9 +85,9 @@ url=https://github.org/eugeneai,
 %% The abstract is a summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  Semantic Web technologies and their standards are becoming productive assets for software development and integration on various design and implementation levels.  These include OSI level 6 data representation, database and file storage formats, the source data for text indexes, document authoring, hypertext markup engines, a representation for abstract software models, \emph{etc}.  They are also smoothly combined with development and data analysis tools, giving raise new common-ground environment for realizing an integration of distributed applications on a semantic level.
+  Semantic Web technologies and their standards are becoming productive assets for software development and integration on various design and implementation levels. These include OSI level 6 data representation, database and file storage formats, the source data for text indexes, document authoring, hypertext markup engines, a representation for abstract software models, \emph{etc.}  They are also smoothly combined with the development and data analysis tools, giving rise to a new common-ground environment for integrating distributed applications on a semantic level.
 
-  This paper presents a view on the Semantic Web technologies as data representation for software development tools with model analysis, transformation, and retrospection capabilities.  Three examples show the technologies usage, exposing our experience.
+  This paper presents a view on the Semantic Web technologies as data representation for software development tools with model analysis, transformation, and retrospection capabilities. Three examples show the technologies usage, exposing our experience.
 \end{abstract}
 
 %%
@@ -111,15 +111,15 @@ url=https://github.org/eugeneai,
 
 \section{Introduction}
 
-Since 2000 the development of the Semantic Web (SW) technologies became actively used usually in describing software domains, representing semantic relations between objects.  For some domains on the base of the SW description, first-order knowledge theories are constructed \cite{}, but in practical aspect of the SW utilization, the solving data representation and software integration aspects prevail.  Some tools for automation of conceptual model design and model conversion were proposed \cite{}.  The R\&D at present are carried on in developing applications, improving and standardizing vocabularies (conceptual domain models), devising tools for solving particular problems.
+Since 2000, the Semantic Web (SW) technologies have become actively used in describing software domains, representing semantic relations between objects. For some domains on the base of the SW description, first-order knowledge theories are constructed \cite{}, but in the practical aspect of the SW utilization, the solving data representation and software integration aspects prevail. Some tools for automation of conceptual model design and model conversion were proposed \cite{}. The R\&D at present are carried on in developing applications, improving and standardizing vocabularies (conceptual domain models), devising tools for solving particular problems.
 
-Unification of routine tasks resulted in development common techniques for storing and processing data, which are aggregated around term ``knowledge graph'' (KG).  These include data representation formats, vocabulary standards, query languages, tools for accessing and management data in a KG.  Software development techniques are mediated with properties of the new-created resources and their APIs\footnote{Abbreviation of Application Programming Interface}.  Many internet resources provide common ways of formalized domain data access using query endpoints, and these endpoints allow one to organize federated KG data access.
+Unification of routine tasks resulted in standard development techniques for storing and processing data aggregated around the term ``knowledge graph'' (KG). These include data representation formats, vocabulary standards, query languages, tools for accessing and managing data in a KG. Software development techniques are mediated with properties of the new-created resources and their APIs\footnote{Abbreviation of Application Programming Interface}. Many internet resources provide standard ways of formalized domain data access using query endpoints, and these endpoints allow one to organize federated KG data access.
 
-In Russia, domain model designers generally prefer to develop local vocabularies instead of spending time for the routine work of Internet surfing for existing conceptual models and their enrichment.  It is due to underdevelopment of the metadata resources (metavocabularies) due to lack a domain classification system as compared, \emph{e.g.} to Universal Decimal Classification (UDC) used in bibliography.  Vocabularies also can have common parts, describing the same or similar entities with different term and relations, \emph{e.g.} semantically more adopted to a specific problem solving.
+In Russia, domain model designers generally prefer to develop local vocabularies instead of spending time for the routine work of Internet surfing for existing conceptual models and their enrichment. It is due to underdevelopment of the metadata resources (metavocabularies) due to lack of a domain classification system as compared, \emph{e.g.} to Universal Decimal Classification (UDC) used in the bibliography. Vocabularies also can have common parts, describing the same or similar entities with different terms and relations, \emph{e.g.} semantically more adapted to a specific problem-solving.
 
-Unitizing standardized vocabularies as domain conceptual models (ontologies) in our projects allow us to compare other research groups point of view to a problem with a formalized context, figure out underestimated and not fully formularized aspects of a domain under investigation or automation.  The vocabularies are similar to information sources as scientific papers, but have a concrete formal presentation of the information objects, allowing one to get rid of particular uncertainties.  Another advantage of standardization is a construction of a common ground of research, development, data formalization, and interchange formats and semantics.  It includes an aggregation of results of pattern recognition, applications of machine learning with their following use as facts in knowledge-based systems.
+Unitizing standardized vocabularies as conceptual domain models (ontologies) in our projects allows us to compare other research groups' points of view to a problem with a formalized context and figure out underestimated and not fully formularized aspects of a domain under investigation or automation. The vocabularies are similar to information sources as scientific papers but have a concrete formal presentation of the information objects, allowing one to get rid of particular uncertainties. Another advantage of standardization is constructing a common ground of research, development, data formalization, and interchange formats and semantics. It includes an aggregation of pattern recognition results applications of machine learning with their following use as facts in knowledge-based systems.
 
-The aim of this paper is to present a contemporary experience of SW and KG utilization in the development of applications in a context of performance improvement of R\&D.  Three examples were reviewed showing advantageous points of the technologies' application.
+This paper aims to present a contemporary experience of SW and KG utilization in the development of applications in a context of performance improvement of R\&D.  Three examples were reviewed, showing good points of the technologies' application.
 
 
 \section{Semantic Web tools}
@@ -131,28 +131,28 @@ Briefly, SW technologies from a developer point of view include the following as
 \item Conceptual set-theoretic and category-theoretic data representation notation as relations between resources and literals represented with triples of a form \texttt{<subject, predicate, object>};
 \item Triples used in a description of a domain form a corresponding semantic graph, conditionally subdivided into terminological subgraph (T-Box) and instance subgraph (A-Box);
 \item Graph presentation formats and techniques are implemented in files, databases, markups of documents, a data flow between applicants; \label{kg1}
-\item There are public semantic databases comprising the generic domain objects descriptions, which are mostly A-Boxes (databases), for example \texttt{DBPedia.org}, a formalized version of \texttt{Wikipedia.org}. % wikidata
-\item For graphs being databases a query services are implemented to allow users obtain its data by portions, as well as implement modifications;
+\item There are public semantic databases comprising the generic domain objects descriptions, which are mostly A-Boxes (databases), for example, \texttt{DBPedia.org}, a formalized version of \texttt{Wikipedia.org}. % wikidata
+\item For graphs being databases, query services are implemented to allow users to obtain its data by portions, as well as implement modifications;
 \item API and libraries for processing files and documents with semantic data acquisition (\emph{e.g.} by extraction of the markup).
 \item Software for graph data processing to improve its structure or induct general relation patterns;
-\item Validation and verification services allowing one to explore consistency and completeness of the conceptual domain models and their implementations in software. \label{kg2}
+\item Validation and verification services allow one to explore consistency and completeness of the conceptual domain models and their implementations in software. \label{kg2}
 \end{enumerate}
-The assets \ref{kg1}--\ref{kg2} form knowledge graph technological aspect of the SW that gained a special interest within R\&D in the last decade.
+The assets  (\ref{kg1}--\ref{kg2}) form knowledge graph technological aspect of the SW that gained a particular interest within R\&D in the last decade.
 
-Each entity being described in SW has its unique global IRI, which is its virtual or real internet address.  Document entities' resource IRIs are formed accounting the document structure, \emph{e.g.} a hierarchy of contexts.  Using IRIs in applications solves fundamental problem of cross-domain and cross-application object identification and forming a basis of common data processing environment.  Entities of various abstract levels can be designated an IRI, including vocabulary definitions (\emph{namespaces}), data types, data containers (files, databases).
+Each entity described in SW has its unique global IRI, its virtual or real internet address. Document entities' resource IRIs are formed accounting the document structure, \emph{e.g.} a hierarchy of contexts. Using IRIs in applications solves the fundamental problem of cross-domain and cross-application object identification and forms a basis for a standardized data processing environment. Entities of various abstract levels can be designated an IRI, including vocabulary definitions (\emph{namespaces}), data types, data containers (files, databases).
 
-Triples are combination of two or three IRIs.  Subject and predicate are always IRIs.  Objects are either IRI (a reference to a resource) or a literal.  Literals are values of basic types (number, string, date, time, \emph{etc.}) usually accompanied with metadata (type designator and/or a language tag).  Types are defined in a vocabulary \texttt{<\url{http://www.w3.org/2001/XMLSchema}\#>}, having well-known namespace abbreviation \ns{xs}\footnote{Hereafter, all well-known namespace names will be given after its IRI in brackets with bold monospace font.}.  Language tag is used to define string values, taking into account its affiliation to a cultural context.  It is recognized with KG tools and utilized at presentation layers of the software.
+Triples are a combination of two or three IRIs (\texttt{<subjectIRI, predicateIRI, object>}).  Subject and predicate are always IRIs, whereas objects are either IRI (a reference to a resource) or a literal. Literals are values of basic types (\emph{e.g.}, number, string, date, time) usually accompanied with metadata (type designator or a language tag). Types are defined in a vocabulary \texttt{<\url{http://www.w3.org/2001/XMLSchema}\#>}, having well-known namespace abbreviation \ns{xs}\footnote{Hereafter, all well-known namespace names will be given after its IRI in brackets with a bold monospace font.}. A language tag defines string values attribute, affiliating them to a cultural context. It is recognized with KG tools and utilized at presentation layers of the software.
 
-Namespaces are convenient instruments in triple definition.  For example \verb|integer| literal \verb|42^^<http://www.w3.org/2001/XMLSchema#integer>| can be reduced to \verb|42^^xs:integer|, where \verb|xs| is namespace prefix of term \verb|integer|.  Most of KG representation formats allow one to define a default namespace, which terms are used without prefix.  Almost any conceptual model of a domain represented as KG comprises entities taken from multiple vocabularies, and namespaces allow to specify the origin of a term.  Three-component tuple (triple) being outside its KG context sometimes added the fourth component, its KG IRI (quadruple).
+Namespaces are convenient instruments in the triple definition. For example \verb|integer| literal \verb|42^^<http://www.w3.org/2001/XMLSchema#integer>| can be reduced to \verb|42^^xs:integer|, where \verb|xs| is namespace prefix of term \verb|integer|.  Most KG representation formats allow one to define a default namespace, which is used without prefix. Almost any conceptual model of a domain represented as KG comprises entities taken from multiple vocabularies, and namespaces specify the origin of a term. Three-component tuple (triple) outside its KG context sometimes added the fourth KG IRI component (quadruple).
 
-Much R\&D efforts since 2001 \cite{tbl} were spend to develop SW data formats and their coupling with document representation.  The simplest way to provide a printed document with semantic representation is pointing user's software agent to an URL serving the semantic data.  But this approach requires to implement two different procedures for document generation and its metadata serving.  That's why a RDFa\footnote{Abbreviation of Resource Description Framework attribute language} has been developed.  It allows developer of XHTML\footnote{HTML structures with strict XML restrictions obeyed} documents to enrich the document with its semantic layer.  The semantic markup is represented with special attributes and their values.  The hierarchical structure of XHTML is a matrix layer for hierarchical structure of document entities semantic relations.  The layer is extracted by XHTML/RDFa processing libraries.  There are other formats having the same expression capabilities as RDF but used for other purposes: \texttt{N-triples}, \texttt{Turtle}, \texttt{Notation~3}, \texttt{JSON-LD}.  The last one is an efficient way of coupling SW and various generic data storage, indexing and processing services.
+Much R\&D efforts since 2001 \cite{tbl} were spent to develop SW data formats and their coupling with document representation. The simplest way to provide a printed document with semantic representation is by pointing the user's software agent to an URL serving the semantic data. However, this approach requires implementing two different procedures for document generation and its metadata serving. That is why an RDFa\footnote{Abbreviation of Resource Description Framework attribute language} has been developed. It allows developer of XHTML\footnote{HTML structures with strict XML restrictions obeyed} documents to enrich the document with its semantic layer.  The semantic markup is represented with special attributes and their values. The hierarchical structure of XHTML is a matrix layer for the hierarchical structure of document entities' semantic relations. XHTML/RDFa processing libraries extract the layer. There are other formats having the same expression capabilities as RDF but used for other purposes: \texttt{N-triples}, \texttt{Turtle}, \texttt{Notation~3}, \texttt{JSON-LD}.  The last is an efficient way of coupling SW and various generic data storage, indexing, and processing services.
 
-Among published global vocabularies, \texttt{DBPedia} is of most valuable for our projects.  It is used for concrete object or notion of physical world reference, \emph{e.g.} the term ``passport'' in law documents authoring \cite{}, naming (labeling) referenced objects in user interface with corresponding words in natural language \cite{github-db}.  Another useful resource is \texttt{WordNet} converted in RDF triples.  It describes semantics of english words and various their mutual relations.
+Among published global vocabularies, \texttt{DBPedia} has the most value for our projects. It is used for concrete object or notion of physical world reference, \emph{e.g.} the term ``passport'' in documents authoring \cite{}, naming (labeling) referenced objects in a user interface with corresponding words in natural language \cite{github-db}. Another useful resource is \texttt{WordNet} converted in RDF triples.  It describes the semantics of English words and various their mutual relations.
 
 Access by program agents to the global resources are standardized as well.  Each serious vocabulary have API access point (endpoints) of form
 \verb|http[s]://<address>/sparql|\footnote{For example, see DBpedia access point at the URL \url{https://dbpedia.org/sparql}} supporting direct \texttt{GET}-queries returning a user form, and \texttt{SPARQL} \texttt{POST} query with answering \texttt{JSON} encoded tabular result.  The form is used to interactively test \texttt{SPARQL} queries before their incorporation in software agents.  All \texttt{SPARQL} endpoints support federated queries, \emph{i.e.} run subqueries on other servers.   For a personal user KG storage, a number of servers were developed, \emph{e.g.}, \texttt{GraphDB}, \texttt{Jena Fuseki}, \texttt{ClioPatria}.  Each has its extension engines.  \texttt{ClioPatria} is extended with Prolog modules and allows one to implement KG processing on server.
 
-KGs and their subgraphs are programmatically processed using libraries developed for all papular programming environments.  KG is represented with triple or quadruple set object.  The set is traversed, triples are filtered according to various conditions.  Filters are defined usually as patterns, where each of the components either a free variable/placeholder or a concrete value (IRI, literal), which must mach exactly.   Some libraries allow one to execute \texttt{SPARQL} queries locally.  KG are evolved with adding new triples, as well as removing irrelevant ones.  The resulting modified KG is stored as files and published on a server.  An example of a federated SPARQL query is presented in Figure~\ref{fig:sparql-ex1}, which results in counting parts classes as the first level of a three widget.  Each class is named in Russian if \texttt{DBPedia} contains a corresponding label with \texttt{ru} language tag.  Otherwise label is figured out of IRI.  This query is initially run at a local server and server initiates a subquery to \texttt{DBPedia.org} endpoint.
+KGs and their subgraphs are programmatically processed using libraries developed for all papular programming environments. KG is represented with a triple or quadruple set object. The set is traversed, triples are filtered according to various conditions. Filters are usually defined as patterns, where each component is either a free variable/placeholder or a concrete value (IRI, literal), which must match exactly.   Some libraries allow one to execute \texttt{SPARQL} queries locally. KG is evolved by adding new triples and removing irrelevant ones. The resulting modified KG is stored as files and published on a server. An example of a federated SPARQL query is presented in Figure~\ref{fig:sparql-ex1}, which results in counting parts classes as the first level of a three widget. Each class is named in Russian if \texttt{DBPedia} contains a corresponding label with \texttt{ru} language tag.  Otherwise, the label is figured out of IRI. This query is initially run at a local server, and the server initiates a subquery to \texttt{DBPedia.org} endpoint.
 
 \begin{figure}[bth]
   \centering
@@ -177,19 +177,19 @@ select * where {
   \label{fig:sparql-ex1}
 \end{figure}
 
-Formalized representation of a domain provided by SW techniques is the basis of automatic inference construction, thus modeling, \emph{e.g.}, problem-solving, resulting in decision synthesis, theorem proving, domain verification.  The inference is implemented in various ways, all of them belong either to semantic ones, usually implemented as solving a corresponding CSP\footnote{Abbreviation of Constraint Satisfaction Problem}, or syntax-driven procedures that mediate the previous structures and infer one of special properties (Automatic Theorem Proving).  Theoretic research is being carried on classification the properties of vocabularies by complexity of verification and development software implementing it for these classes.  This software is a  part of RDF-processing libraries and stand-alone system extensions.
+Formalized representation of a domain provided by SW techniques is the basis of automatic inference construction, thus modeling, \emph{e.g.}, problem-solving, resulting in decision synthesis, theorem proving, domain verification. The inference is implemented in various ways. All of them belong either to semantic ones, usually implemented as solving a corresponding CSP\footnote{Abbreviation of Constraint Satisfaction Problem}, or syntax-driven procedures that mediate the previous structures and infer one of the specific properties (Automatic Theorem Proving). Theoretic research is being carried on classification the properties of vocabularies by the complexity of verification and development software implementing it for these classes. This software is a  part of RDF-processing libraries and stand-alone system extensions.
 
-Our interest is located in synthesizing (logically inferring) new objects using logic programming (LP) from domain models represented as KGs.  LP allows developer to combine KG processing with other inferences in the same programming paradigm.  SWI-Prolog programming language environment and Logtalk extension is used for the purpose.  SWI system has library for representing and processing KG, and Logtalk is used to realize transformations providing the inference.  Object-oriented properties of Logtalk enable one to cope with generic disadvantaged of RDF with encapsulation, manipulate knowledge sets with object composition instruments such as extension, inheritance and composition, and represent inference in a generalized form of objects sending messages to each other.
+Our interest is synthesizing (logically inferring) new objects using logic programming (LP) from domain models represented as KGs. LP allows a developer to combine KG processing with other inferences in the same programming paradigm. SWI-Prolog programming language environment and Logtalk extension is used for this purpose. SWI system has a library for representing and processing KG, and Logtalk is used to implement transformations providing the inference. Object-oriented properties of Logtalk enable one to cope with generic disadvantages of RDF with encapsulation, manipulate knowledge sets with object composition instruments such as extension, inheritance, and composition, and represent inference in a generalized form of objects sending messages to each other.
 
-In order to present the general architecture of application development, we have to briefly speak about KG definitions and its useful properties.
+In order to present the general architecture of application development, we have to speak about KG definitions and useful properties briefly of KGs.
 % \subsection{Knowledge graph properties as application basis}
 % \label{sec:kg-as-basis}
-KGs changed the view point to the knowledge base as being a part of whole totality of knowledge, implying the obeying the global standards and techniques of its acquisition and processing \cite{hogan}.  The following outlines their definitions \cite{hogan}.
+KGs changed the viewpoint to the knowledge base as being a part of the whole totality of knowledge, implying the obeying the global standards and techniques of its acquisition and processing \cite{hogan}. The following outlines their definitions \cite{hogan}.
  \begin{itemize}
   \item Notions \emph{data} and \emph{knowledge} are converged into ``\emph{something} \emph{known}'';
-  \item KG contains data and knowledge in form of resources and relations, including metadata;
+  \item KG contains data and knowledge in the form of resources and relations, including metadata;
   \item The same KG is being filled in and processed by different independent modules, \emph{e.g.}, withing SPARQL queries with UPDATE statements;
-  \item KG fundamentals allow software developer to \emph{postpone} the formal definition of a data schema;
+  \item KG fundamentals allow a software developer to \emph{postpone} the formal definition of a data schema;
   \item There are three points of view to graph schemata interpretation:
     \begin{itemize}
     \item \emph{semantic}, which is aimed at domain modeling paying attention to generalization relations (classes);
@@ -198,16 +198,16 @@ KGs changed the view point to the knowledge base as being a part of whole totali
     \end{itemize}
   \end{itemize}
 
-In our projects, KG stores global data, knowledge, and models.  This is due to a general considerations not to overfull it with secondary plane data, which of cause can form other KG resources and used in the federated queries.  Such way partially solves the main technical problems of KG storage and query execution.  Being a triple set, whole KGs are usually stored in computer RAM, their structures expose no heuristic information to as query engines, which could be used for optimizations as compared to relation databases technologies.
+In our projects, KG stores global data, knowledge, and models. It is due to general considerations not to overfill it with secondary plane data, which of cause can form other KG resources and be used in the federated queries. Such a way partially solves the main technical problems of KG storage and query execution. Being a triple set, whole KGs are usually stored in computer RAM, and their structures expose no heuristic information to query engines, which could be used for optimizations compared to relation databases technologies.
 
 % TODO: Integration out of our architecture.
 
 \section{General architecture of application environment}
 \label{sec:architecture}
 
-With general constraints implied by KG based domain modeling, design of application modules are to be built on standardized data interchange formats, which are to be easily converted from and to KG representation, as well as applications are to be constructed out of service modules supporting SW endpoints (SPARQL) whenever possible.
+With general constraints implied by KG based domain modeling, the design of application modules are to be built on standardized data interchange formats, which are to be easily converted from and to KG representation, as well as applications are to be constructed out of service modules supporting SW endpoints (SPARQL) whenever possible.
 
-A convenient approach of application construction is usage component architectures, where subsystems in runtime are components \emph{providing} interfaces using other components' service available via corresponding interfaces.  Zope component architecture \cite{zca}, Logtalk, React.js are used to \emph{implement} interfaces.  Python allows wrap whole subsystems, \emph{e.g.}, Elastic search, in imperative paradigm, and Logtalk is chosen for the declarative counterpart.  Inter-process component communications is realized usually with \texttt{HTTP} protocol, representing data in XML and JSON formats.
+A convenient approach of application construction is usage component architectures, where subsystems in runtime are components \emph{providing} interfaces using other components' service available via corresponding interfaces. Zope component architecture \cite{zca}, Logtalk, React.js are used to \emph{implement} interfaces.  Python allows to wrap whole subsystems, \emph{e.g.}, Elastic search, in imperative paradigm, and Logtalk is chosen for the declarative counterpart. Inter-process component communications is realized usually with \texttt{HTTP} protocol, representing data in XML and JSON formats.
 
 Our R\&D resulted in a set of components and a general application architecture showed in Figure~\ref{fig:arch-services}.
 \begin{figure}[bth]
@@ -232,17 +232,17 @@ Our R\&D resulted in a set of components and a general application architecture 
   \caption{Architecture of application instrumental environment as a set of components}
   \label{fig:arch-services}
 \end{figure}
-The kernel module of applications is \texttt{KG server} (B2) built on the base of ClioPatria \cite{cliopatria} with web-server and Pengines plug-ins.  ClioPatria is a web-application implemented in SWI-Prolog \cite{swi} being ISO-compliant Prolog implementation.  KG functions are realized with SW package, supplied in standard SWI-Prolog distribution.  Pengines service enables SW web-applications utilize logical inference on the server side \cite{pengines} with browser JavaScript environment integration.  Pengine's knowledge base are extended with programmer's Prolog modules.  Kernel module stores a common global part of A-~and T-boxes of applications, \emph{i.e.} it is application database.  Other modules provide application (C3) with services.
+The kernel module of applications is \texttt{KG server} (B2) built on the base of ClioPatria \cite{cliopatria} with web-server and Pengines plug-ins. ClioPatria is a web-application implemented in SWI-Prolog \cite{swi} being ISO-compliant Prolog implementation.  KG functions are implemented with SW package, supplied in standard SWI-Prolog distribution. Pengines service enables SW web-applications to utilize logical inference on the server-side \cite{pengines} with browser JavaScript environment integration. Pengine's knowledge base is extended with the programmer's Prolog modules. Kernel module stores a common global part of A-~and T-boxes of applications, \emph{i.e.} it is application database. Other modules provide an application (C3) with services.
 
-Authoring tool (B1) is used to provide document generation and integration \cite{sibiricon}.  This tool enables document content and structure inference in browser utilizing templates and data from other web pages and websites providing LOD capabilities.  Programmer implements a view of an object as a web page with an extended version of RDFa.  The page are generated within any programming runtime, \emph{e.g.} PHP.  Authoring tool engine collects web page chunks and composing the document out of these chunks as a XHTML page.  This composed page can be stored in a KG as set of triples and indexed in Text indexing module (C1), printed with browser's printing engine, or converted to PDF.  The tool allow user to change document content in WISYWIG mode in some extent.  Its general structure is defined by changing template at server side.
+Authoring tool (B1) is used to provide document generation and integration \cite{sibiricon}. This tool enables document content and structure inference in the browser utilizing templates and data from other web pages and websites providing LOD capabilities. Programmer implements a view of an object as a web page with an extended version of RDFa. The page is generated within any programming runtime, \emph{e.g.} PHP. The authoring tool engine collects web page chunks and composes the document as an XHTML page. This composed page can be stored in a KG as a set of triples and indexed in the Text indexing module (C1), printed with the browser's printing engine, or converted to PDF. The tool allows the user to change document content in WYSIWYG mode. Its general structure is defined by changing the template on the server-side.
 
-Text indexing engine (C1) provides service for storing documents represented as KG triples, JSONs, and BLOBS of any format with corresponding text layers.  This module has two implementations.  One is build on Sphinx Search engine, and the second one is Elasticsearch.  Elasticsearch supports JSON as the only document format and easily integrated with KG using JSON-LD for triple representation.  Sphinx Search is much faster in text and database records indexing and consumes less RAM as it is implemented in C++.  The choice of an engine depends on the primary document representation to be used in application.
+Text indexing engine (C1) provides a service for storing documents represented as KG triples, JSONs, and BLOBS of any format with corresponding text layers. This module has two implementations. One is built on the Sphinx Search engine, and the second is Elasticsearch.  Elasticsearch supports JSON as the only document format and is easily integrated with KG using JSON-LD for triple representation. Sphinx Search is much faster in text and database records indexing and consumes less RAM as it is implemented in C++. The choice of an engine depends on the primary document representation used in an application.
 
-BLOB stored documents having no markup (PDFs, scanned documents) usually contain useful data, which are to be revealed for application use.  The documents could be report data or scientific paper content, DJVU files or raster images.  Data recognition is realized in PDF/Text document processing module (C2).  Data processing workers query Text indexing module for BLOB documents and add recognized text and high-order structure layers.  All obtained layers are stored in the database of C1, as well as data of general interest are to be converted in triples of KG.
+BLOB stored documents having no markup (PDFs, scanned documents) usually contain valuable data to be revealed for application use. The documents could be report data or scientific paper content, DJVU files, or raster images. Data recognition is implemented in the PDF/Text document processing module (C2), where data processing workers query the Text indexing module for BLOB documents and add recognized text and high-order structure layers. All obtained layers are stored in the database of C1, and data of general interest are to be converted in triples of KG.
 
-A generalized KG processing is being executed in KB processing module (B3).  This component denote a set of rules used to implement the validating and emergent semantics, as well as analysis and synthesis of the new data, including resultant output.  Module A2 is the source of model data (design of domains, UML, problem statement, \emph{etc.}), which is converted and form T-box of KG.  The conversion is a kind of Model-driven architecture (MDA) implementation.  Transformation is carried out under control of Platform model describing a context of the conversion, for example, in case of software source code synthesis, software platform used in implementation of model objects.
+A generalized KG processing is being executed in the KB processing module (B3). This component denotes a set of rules used to implement the validating and emergent semantics and analysis and synthesis of the new data, including resultant output. Module A2 is the source of model data (design of domains, UML, problem statement, \emph{etc.}), which is converted and form the T-box of KG. The conversion is a kind of Model-driven architecture (MDA) implementation. Transformation is carried out under the control of the Platform model, describing a context of the conversion. For example, in the case of software source code synthesis, the software platform model is used to implement model objects.
 
-Metadata processing module (A1) denote the environment capabilities for expressing semantics of data processing module output out of its input data semantics.  This allows us to store resultant data in KG for the further usage in module (B3) for problem solving and decision making.  Module A3 denote external services and KG with useful resources, \emph{e.g.}, DBPedia global objects.
+The metadata processing module (A1) denotes the environment capabilities for expressing the semantics out of the data processing modules' output and the input data semantics. It allows us to store resultant data in KG for further usage in module (B3) for problem-solving and decision-making. Module A3 denote external services and KG with valuable resources, \emph{e.g.}, DBPedia global objects.
 
 \section{Implementation examples}
 
@@ -253,355 +253,20 @@ In this section, three examples of application implementation are being presente
 \label{sec:disc}
 
 
-[we tried to collaborate with software developers using traditional approaches.  They are not interested as ]
+[we tried to collaborate with software developers using traditional approaches. They are not interested as ]
 
 
-CEUR-WS's article template provides a consistent \LaTeX{} style for
-use across CEUR-WS publications, and incorporates accessibility and
-metadata-extraction functionality. This document will explain the
-major features of the document class.
 
-If you are new to publishing with CEUR-WS, this document is a valuable
-guide to the process of preparing your work for publication.
-
-The ``\verb|ceurart|'' document class can be used to prepare articles
-for any CEUR-WS publication, and for any stage of publication, from
-review to final ``camera-ready'' copy with {\itshape very} few changes
-to the source.
-
-This class depends on the following packages
-for its proper functioning:
-
-\begin{itemize}
-\item \verb|natbib.sty| for citation processing;
-\item \verb|geometry.sty| for margin settings;
-\item \verb|graphicx.sty| for graphics inclusion;
-\item \verb|hyperref.sty| optional package if hyperlinking is required in
-  the document;
-\item \verb|fontawesome5.sty| optional package for bells and whistles.
-\end{itemize}
-
-All the above packages are part of any
-standard \LaTeX{} installation.
-Therefore, the users need not be
-bothered about downloading any extra packages.
-
-\section{Modifications}
-
-Modifying the template --- including but not limited to: adjusting
-margins, typeface sizes, line spacing, paragraph and list definitions,
-and the use of the \verb|\vspace| command to manually adjust the
-vertical spacing between elements of your work --- is not allowed.
-
-\section{Template parameters}
-
-There are a number of template
-parameters which modify some part of the \verb|ceurart| document class.
-This parameters are enclosed in square
-brackets and are a part of the \verb|\documentclass| command:
-% \begin{lstlisting}
-%   \documentclass[parameter]{ceurart}
-% \end{lstlisting}
-
-Frequently-used parameters, or combinations of parameters, include:
-\begin{itemize}
-\item {\verb|twocolumn|}: Two column layout.
-\item {\verb|hf|}: Enable header and footer\footnote{You can enable
-    the display of page numbers in the final version of the entire
-    collection. In this case, you should adhere to the end-to-end
-    pagination of individual papers.}.
-\end{itemize}
-
-
-\subsection{Title Information}
-
-The titles of papers should be either all use the emphasizing
-capitalized style or they should all use the regular English (or
-native language) style. It does not make a good impression if you or
-your authors mix the styles.
-
-Use the \verb|\title| command to define the title of your work. Do not
-insert line breaks in your title.
-
-\subsection{Title variants}
-
-% \verb|\title| command have the below options:
-% \begin{itemize}
-% \item \verb|title|: Document title. This is default option.
-% \begin{lstlisting}
-% \title[mode=title]{This is a title}
-% \end{lstlisting}
-% You can just omit it, like as follows:
-% \begin{lstlisting}
-% \title{This is a title}
-% \end{lstlisting}
-
-% \item \verb|alt|: Alternate title.
-% \begin{lstlisting}
-% \title[mode=alt]{This is a alternate title}
-% \end{lstlisting}
-
-% \item \verb|sub|: Sub title.
-% \begin{lstlisting}
-% \title[mode=sub]{This is a sub title}
-% \end{lstlisting}
-% You can just use \verb|\subtitle| command, as follows:
-% \begin{lstlisting}
-% \subtitle{This is a sub title}
-% \end{lstlisting}
-
-% \item \verb|trans|: Translated title.
-% \begin{lstlisting}
-% \title[mode=trans]{This is a translated title}
-% \end{lstlisting}
-
-% \item \verb|transsub|: Translated sub title.
-% \begin{lstlisting}
-% \title[mode=transsub]{This is a translated sub title}
-% \end{lstlisting}
-% \end{itemize}
-
-\subsection{Authors and Affiliations}
-
-Each author must be defined separately for accurate metadata
-identification. Multiple authors may share one affiliation. Authors'
-names should not be abbreviated; use full first names wherever
-possible. Include authors' e-mail addresses whenever possible.
-
-\verb|\author| command have the below options:
-
-\begin{itemize}
-\item \verb|style|: Style of author name (chinese)
-\item \verb|prefix|: Prefix
-\item \verb|suffix|: Suffix
-\item \verb|degree|: Degree
-\item \verb|role|: Role
-\item \verb|orcid|: ORCID
-\item \verb|email|: E-mail
-\item \verb|url|: URL
-\end{itemize}
-
-Author names can have some kinds of marks and notes:
-\begin{itemize}
-\item affiliation mark: \verb|\author[<num>]|.
-% \item email: \verb|\ead{<email>}|,
-% \item url: \verb|\ead[url]{<url>}|.
-\end{itemize}
-
-The author names and affiliations could be formatted in two ways:
-\begin{enumerate}
-\item Group the authors per affiliation.
-\item Use an explicit mark to indicate the affiliations.
-\end{enumerate}
-
-Author block example:
-% \begin{lstlisting}
-% \author[1,2]{Author Name}[%
-%     prefix=Prof.,
-%     degree=D.Sc.,
-%     role=Researcher,
-%     orcid=0000-0000-000-0000,
-%     email=name@example.com,
-%     url=https://name.example.com
-% ]
-
-% \address[1]{Affiliation #1}
-% \address[2]{Affiliation #2}
-% \end{lstlisting}
-
-% \subsection{Abstract and Keywords}
-
-% Abstract shall be entered in an environment that starts
-% with \verb|\begin{abstract}| and ends with
-% \verb|\end{abstract}|.
-
-% \begin{lstlisting}
-% \begin{abstract}
-%   This is an abstract.
-% \end{abstract}
-% \end{lstlisting}
-
-% The key words are enclosed in a \verb|keywords|
-% environment. Use \verb|\sep| to separate keywords.
-
-% \begin{lstlisting}
-% \begin{keywords}
-%   First keyword \sep
-%   Second keyword \sep
-%   Third keyword \sep
-%   Fourth keyword
-% \end{keywords}
-% \end{lstlisting}
-
-At the end of front matter add \verb|\maketitle| command.
-
-\section{Sectioning Commands}
-
-Your work should use standard \LaTeX{} sectioning commands:
-\verb|\section|, \verb|\subsection|,
-\verb|\subsubsection|, and
-\verb|\paragraph|. They should be numbered; do not remove
-the numbering from the commands.
-
-Simulating a sectioning command by setting the first word or words of
-a paragraph in boldface or italicized text is not allowed.
-
-\section{Tables}
-
-The ``\verb|ceurart|'' document class includes the ``\verb|booktabs|''
-package --- \url{https://ctan.org/pkg/booktabs} --- for preparing
-high-quality tables.
-
-Table captions are placed \textit{above} the table.
-
-Because tables cannot be split across pages, the best placement for
-them is typically the top of the page nearest their initial cite.  To
-ensure this proper ``floating'' placement of tables, use the
-environment \verb|table| to enclose the table's contents and the
-table caption. The contents of the table itself must go in the
-\verb|tabular| environment, to be aligned properly in rows and
-columns, with the desired horizontal and vertical rules.
-
-Immediately following this sentence is the point at which
-Table~\ref{tab:freq} is included in the input file; compare the
-placement of the table here with the table in the printed output of
-this document.
-
-\begin{table*}
-  \caption{Frequency of Special Characters}
-  \label{tab:freq}
-  \begin{tabular}{ccl}
-    \toprule
-    Non-English or Math&Frequency&Comments\\
-    \midrule
-    \O & 1 in 1,000& For Swedish names\\
-    $\pi$ & 1 in 5& Common in math\\
-    \$ & 4 in 5 & Used in business\\
-    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-  \bottomrule
-\end{tabular}
-\end{table*}
-
-To set a wider table, which takes up the whole width of the page's
-live area, use the environment \verb|table*| to enclose the table's
-contents and the table caption.  As with a single-column table, this
-wide table will ``float'' to a location deemed more
-desirable. Immediately following this sentence is the point at which
-Table~\ref{tab:commands} is included in the input file; again, it is
-instructive to compare the placement of the table here with the table
-in the printed output of this document.
-
-\begin{table}
-  \caption{Some Typical Commands}
-  \label{tab:commands}
-  \begin{tabular}{ccl}
-    \toprule
-    Command &A Number & Comments\\
-    \midrule
-    \texttt{{\char'134}author} & 100& Author \\
-    \texttt{{\char'134}table}& 300 & For tables\\
-    \texttt{{\char'134}table*}& 400& For wider tables\\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\section{Math Equations}
-
-You may want to display math equations in three distinct styles:
-inline, numbered or non-numbered display.  Each of the three are
-discussed in the next sections.
-
-\subsection{Inline (In-text) Equations}
-
-A formula that appears in the running text is called an inline or
-in-text formula.  It is produced by the \verb|math| environment,
-which can be invoked with the usual
-\verb|\begin| \ldots \verb|\end| construction or with
-the short form \verb|$| \ldots \verb|$|. You can use any of the symbols
-and structures, from $\alpha$ to $\omega$, available in
-\LaTeX~\cite{Lamport:LaTeX};
-this section will simply show a few
-examples of in-text equations in context. Notice how this equation:
-\begin{math}
-  \lim_{n\rightarrow \infty} \frac{1}{n} = 0,
-\end{math}
-set here in in-line math style, looks slightly different when
-set in display style.  (See next section).
-
-\subsection{Display Equations}
-
-A numbered display equation---one set off by vertical space from the
-text and centered horizontally---is produced by the \verb|equation|
-environment. An unnumbered display equation is produced by the
-\verb|displaymath| environment.
-
-Again, in either environment, you can use any of the symbols and
-structures available in \LaTeX{}; this section will just give a couple
-of examples of display equations in context.  First, consider the
-equation, shown as an inline equation above:
-\begin{equation}
-  \lim_{n\rightarrow \infty} \frac{1}{n} = 0.
-\end{equation}
-Notice how it is formatted somewhat differently in
-the \verb|displaymath|
-environment.  Now, we'll enter an unnumbered equation:
-\begin{displaymath}
-  S_{n} = \sum_{i=1}^{n} x_{i} ,
-\end{displaymath}
-and follow it with another numbered equation:
-\begin{equation}
-  \lim_{x \to 0} (1 + x)^{1/x} = e
-\end{equation}
-just to demonstrate \LaTeX's able handling of numbering.
-
-\section{Figures}
-
-The ``\verb|figure|'' environment should be used for figures. One or
-more images can be placed within a figure. If your figure contains
-third-party material, you must clearly identify it as such, as shown
-in the example below.
-\begin{figure}
-  \centering
-  % \includegraphics[width=\linewidth]{sample-franklin}
-  \caption{1907 Franklin Model D roadster. Photograph by Harris \&
-    Ewing, Inc. [Public domain], via Wikimedia
-    Commons. (\url{https://goo.gl/VLCRBB}).}
-\end{figure}
-
-Your figures should contain a caption which describes the figure to
-the reader. Figure captions go below the figure. Your figures should
-also include a description suitable for screen readers, to
-assist the visually-challenged to better understand your work.
-
-Figure captions are placed below the figure.
-
-\section{Citations and Bibliographies}
-
-The use of Bib\TeX{} for the preparation and formatting of one's
-references is strongly recommended. Authors' names should be complete
---- use full first names (``Donald E. Knuth'') not initials
-(``D. E. Knuth'') --- and the salient identifying features of a
-reference should be included: title, year, volume, number, pages,
-article DOI, etc.
-
-The bibliography is included in your source document with these two
-commands, placed just before the \verb|\end{document}|
-command:
-% \begin{lstlisting}
-% \bibliography{bibfile}
-% \end{lstlisting}
-where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
-suffix, of the Bib\TeX{} file.
 
 \begin{acknowledgments}
 
-  The results were obtained within the state assignment of the Ministry of Education and Science of Russia, the project ``Methods and technologies of a cloud-based service-oriented digital platform for collecting, storing and processing large volumes of multi-format interdisciplinary data and knowledge based on the use of artificial intelligence, a model-driven approach and machine learning'', No.~FWEW-2021-0005 (State registration No.~121030500071-2).
+The results were obtained within the state assignment of the Ministry of Education and Science of Russia, the project ``Methods and technologies of a cloud-based service-oriented digital platform for collecting, storing and processing large volumes of multi-format interdisciplinary data and knowledge based on the use of artificial intelligence, a model-driven approach, and machine learning'', No.~FWEW-2021-0005 (State registration No.~121030500071-2).
 
-  The results obtained with the use of the network infrastructure of Telecommunication center of collective use ``Integrated information-computational network of Irkutsk scientific-educational complex'' (\url{http://net.icc.ru}).
+The results were obtained with the use of the network infrastructure of the Telecommunication center of collective use ``Integrated information-computational network of Irkutsk scientific-educational complex'' (\url{http://net.icc.ru}).
 
 The~R\&D on GIS-viewer of faults involved the Centre of Geodynamics and Geochronology equipment at the Institute of the Earth's Crust, Siberian Branch of the Russian Academy of Sciences (grant No.~075-15-2021-682).   This study direction was partially carried out within the basic budgetary research project ``Modern geodynamics, mechanisms of destruction of the lithosphere and hazardous geological processes in Central Asia'', No.~FWEF-2021-0009.
 
-The~development of the~infrastructure for Mothur command transformation to Rapidminer dataflow diagram is supported by the project of Irkutsk scientific center of Siberian branch of Russian Academy of sciences, grant No 4.2.
+The~development of the~infrastructure for Mothur command transformation to Rapidminer dataflow diagram is supported by the Irkutsk scientific center of Siberian Branch of Russian Academy of Sciences, grant No 4.2.
 
 \end{acknowledgments}
 %%
@@ -614,7 +279,7 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 
 \bibitem{lod} C.~Bizer, T.~Heath, T.~Berners-Lee, Linked Data -- The Story So Far. Int. J. Semantic Web Inf. Syst., 5 (2009), pp.~1--22. \doi{10.4018/jswis.2009081901}
 
-\bibitem{lunina} O.~V.~Lunina.  The digital map of the Pliocene–Quaternary crustal faults in the Southern East Siberia and the adjacent Northern Mongolia. Geodynamics \& Tectonophysics.  V.~7(3) (2016). pp.~407-434. (in Russian) \doi{10.5800/GT-2016-7-3-0215}
+\bibitem{lunina} O.~V.~Lunina.  The digital map of the Pliocene–Quaternary crustal faults in the Southern East Siberia and the adjacent Northern Mongolia. Geodynamics \& Tectonophysics. V.~7(3) (2016). pp.~407-434. (in Russian) \doi{10.5800/GT-2016-7-3-0215}
 
 \bibitem{hogan} A.~Hogan, E.~Blomqvist, M.~Cochez, C.~D’Amato \emph{et al}. Knowledge Graphs, 2020. \url{https://arxiv.org/abs/2003.02320v5}
 
@@ -626,7 +291,7 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 
 \bibitem{geolink} M.~Cheatham, A.~Krisnadhi, R.~Amini, P.~Hitzler, \emph{et al}. The GeoLink knowledge graph, Big Earth Data, 2:2 (2018), pp.~131-143. \doi{10.1080/20964471.2018.1469291}
 
-\bibitem{abid} T.~Abid, H.~Zarzour. Integrating linked open data in geographical information system. Procs. of. International Conference on Information Technology for Organization Development. Oct 19-20, 2014, University of Tebessa, Tebessa, Algeria (2014).
+\bibitem{abid} T.~Abid, H.~Zarzour. Integrating linked open data in a geographical information system. Procs. of. International Conference on Information Technology for Organization Development. Oct 19-20, 2014, University of Tebessa, Tebessa, Algeria (2014).
 
 \bibitem{iwaniak1} A.~Iwaniak, I.~Kaczmarek, M.~Strzelecki, J.~Lukowicz, P.~Jankowski. Enriching and improving the quality of linked data with GIS. Open Geosciences, Vol.~8, 1~(2016) pp.~323-336. \doi{10.1515/geo-2016-0020}
 
@@ -634,7 +299,7 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 
 \bibitem{zont19} E.~Cherkashin, A.~Shigarov, V.~Paramonov. Representation of MDA transformation with logical objects. International Multi-Conference on Engineering, Computer and Information Sciences (SIBIRCON), Novosibirsk, Russia. (2019) 0913--0918 \doi{10.1109/SIBIRCON48586.2019.8958008}
 
-\bibitem{authoring} E.~Cherkashin, A.~Shigarov, V.~Paramonov, A.~Mikhailov, Digital archives supporting document content inference, Procs. of 42-nd International Convention on Information and Communication Technology Electronics and Microelectronics (MIPRO), May, 20–24, 2019. pp. 1037-1042. \doi{10.23919/MIPRO.2019.8757196}
+\bibitem{authoring} E.~Cherkashin, A.~Shigarov, V.~Paramonov, A.~Mikhailov, Digital archives supporting document content inference, Procs. of 42-nd International Convention on Information and Communication Technology Electronics and Microelectronics (MIPRO), May 20–24, 2019. pp. 1037-1042. \doi{10.23919/MIPRO.2019.8757196}
 
 \bibitem{gisviewer} E.~Cherkashin, O.~Lunina, L.~Demyanov, A.~Tsygankov. Web-GIS viewer for active faults data represented as a knowledge graph. Proceedings for 4th Scientific-practical Workshop Information Technologies: Algorithms, Models, Systems. Irkutsk, Russia, September 14, 2021. CEUR-WS.org, online \url{http://ceur-ws.org/Vol-2984/paper8.pdf}
 
