@@ -22,6 +22,7 @@
 \usepackage{minted}
 \setminted{fontsize=\footnotesize,mathescape}
 \usepackage{hyperref}
+\usepackage{multicol}
 
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
@@ -42,7 +43,12 @@
   }
 
 \usepackage{pifont}
+\usepackage{xcolor}
 \graphicspath{{pics/}}
+
+\newcommand{\GB}[1]{\colorbox{green}{#1}}
+\newcommand{\BB}[1]{\colorbox{blue}{#1}}
+\newcommand{\RB}[1]{\colorbox{red}{#1}}
 
 
 %% auto break lines
@@ -147,7 +153,7 @@ Namespaces are convenient instruments in the triple definition. For example \ver
 
 Much R\&D efforts since 2001 \cite{tbl} were spent to develop SW data formats and their coupling with document representation. The simplest way to provide a printed document with semantic representation is by pointing the user's software agent to an URL serving the semantic data. However, this approach requires implementing two different procedures for document generation and its metadata serving. That is why an RDFa\footnote{Abbreviation of Resource Description Framework attribute language} has been developed. It allows developer of XHTML\footnote{HTML structures with strict XML restrictions obeyed} documents to enrich the document with its semantic layer.  The semantic markup is represented with special attributes and their values. The hierarchical structure of XHTML is a matrix layer for the hierarchical structure of document entities' semantic relations. XHTML/RDFa processing libraries extract the layer. There are other formats having the same expression capabilities as RDF but used for other purposes: \texttt{N-triples}, \texttt{Turtle}, \texttt{Notation~3}, \texttt{JSON-LD}.  The last is an efficient way of coupling SW and various generic data storage, indexing, and processing services.
 
-Among published global vocabularies, \texttt{DBPedia} has the most value for our projects. It is used for concrete object or notion of physical world reference, \emph{e.g.} the term ``passport'' in documents authoring \cite{}, naming (labeling) referenced objects in a user interface with corresponding words in natural language \cite{github-db}. Another useful resource is \texttt{WordNet} converted in RDF triples.  It describes the semantics of English words and various their mutual relations.
+Among published global vocabularies, \texttt{DBPedia} has the most value for our projects. It is used for concrete object or notion of physical world reference, \emph{e.g.} the term ``passport'' in documents authoring \cite{}, naming (labeling) referenced objects in a user interface with corresponding words in natural language. Another useful resource is \texttt{WordNet} converted in RDF triples.  It describes the semantics of English words and various their mutual relations.
 
 Access by program agents to the global resources are standardized as well.  Each serious vocabulary have API access point (endpoints) of form
 \verb|http[s]://<address>/sparql|\footnote{For example, see DBpedia access point at the URL \url{https://dbpedia.org/sparql}} supporting direct \texttt{GET}-queries returning a user form, and \texttt{SPARQL} \texttt{POST} query with answering \texttt{JSON} encoded tabular result.  The form is used to interactively test \texttt{SPARQL} queries before their incorporation in software agents.  All \texttt{SPARQL} endpoints support federated queries, \emph{i.e.} run subqueries on other servers.   For a personal user KG storage, a number of servers were developed, \emph{e.g.}, \texttt{GraphDB}, \texttt{Jena Fuseki}, \texttt{ClioPatria}.  Each has its extension engines.  \texttt{ClioPatria} is extended with Prolog modules and allows one to implement KG processing on server.
@@ -207,7 +213,7 @@ In our projects, KG stores global data, knowledge, and models. It is due to gene
 
 With general constraints implied by KG based domain modeling, the design of application modules are to be built on standardized data interchange formats, which are to be easily converted from and to KG representation, as well as applications are to be constructed out of service modules supporting SW endpoints (SPARQL) whenever possible.
 
-A convenient approach of application construction is usage component architectures, where subsystems in runtime are components \emph{providing} interfaces using other components' service available via corresponding interfaces. Zope component architecture \cite{zca}, Logtalk, React.js are used to \emph{implement} interfaces.  Python allows to wrap whole subsystems, \emph{e.g.}, Elastic search, in imperative paradigm, and Logtalk is chosen for the declarative counterpart. Inter-process component communications is realized usually with \texttt{HTTP} protocol, representing data in XML and JSON formats.
+A convenient approach of application construction is usage component architectures, where subsystems in runtime are components \emph{providing} interfaces using other components' service available via corresponding interfaces. Zope component architecture\footnote{On-line book is at \url{https://muthukadan.net/docs/zca.html}}, Logtalk, React.js are used to \emph{implement} interfaces.  Python allows to wrap whole subsystems, \emph{e.g.}, Elastic search, in imperative paradigm, and Logtalk is chosen for the declarative counterpart. Inter-process component communications is realized usually with \texttt{HTTP} protocol, representing data in XML and JSON formats.
 
 Our R\&D resulted in a set of components and a general application architecture showed in Figure~\ref{fig:arch-services}.
 \begin{figure}[bth]
@@ -232,9 +238,9 @@ Our R\&D resulted in a set of components and a general application architecture 
   \caption{Architecture of application instrumental environment as a set of components}
   \label{fig:arch-services}
 \end{figure}
-The kernel module of applications is \texttt{KG server} (B2) built on the base of ClioPatria \cite{cliopatria} with web-server and Pengines plug-ins. ClioPatria is a web-application implemented in SWI-Prolog \cite{swi} being ISO-compliant Prolog implementation.  KG functions are implemented with SW package, supplied in standard SWI-Prolog distribution. Pengines service enables SW web-applications to utilize logical inference on the server-side \cite{pengines} with browser JavaScript environment integration. Pengine's knowledge base is extended with the programmer's Prolog modules. Kernel module stores a common global part of A-~and T-boxes of applications, \emph{i.e.} it is application database. Other modules provide an application (C3) with services.
+The kernel module of applications is \texttt{KG server} (B2) built on the base of ClioPatria \cite{cliopatria} with web-server and Pengines plug-ins. ClioPatria is a web-application implemented in SWI-Prolog \cite{cliopatria} being ISO-compliant Prolog implementation.  KG functions are implemented with SW package, supplied in standard SWI-Prolog distribution. Pengines service enables SW web-applications to utilize logical inference on the server-side \cite{cliopatria} with browser JavaScript environment integration. Pengine's knowledge base is extended with the programmer's Prolog modules. Kernel module stores a common global part of A-~and T-boxes of applications, \emph{i.e.} it is application database. Other modules provide an application (C3) with services.
 
-Authoring tool (B1) is used to provide document generation and integration \cite{sibiricon}. This tool enables document content and structure inference in the browser utilizing templates and data from other web pages and websites providing LOD capabilities. Programmer implements a view of an object as a web page with an extended version of RDFa. The page is generated within any programming runtime, \emph{e.g.} PHP. The authoring tool engine collects web page chunks and composes the document as an XHTML page. This composed page can be stored in a KG as a set of triples and indexed in the Text indexing module (C1), printed with the browser's printing engine, or converted to PDF. The tool allows the user to change document content in WYSIWYG mode. Its general structure is defined by changing the template on the server-side.
+Authoring tool (B1) is used to provide document generation and integration \cite{zont19}. This tool enables document content and structure inference in the browser utilizing templates and data from other web pages and websites providing LOD\footnote{Abbreviation of Linked Open Data}с capabilities. Programmer implements a view of an object as a web page with an extended version of RDFa. The page is generated within any programming runtime, \emph{e.g.} PHP. The authoring tool engine collects web page chunks and composes the document as an XHTML page. This composed page can be stored in a KG as a set of triples and indexed in the Text indexing module (C1), printed with the browser's printing engine, or converted to PDF. The tool allows the user to change document content in WYSIWYG mode. Its general structure is defined by changing the template on the server-side.
 
 Text indexing engine (C1) provides a service for storing documents represented as KG triples, JSONs, and BLOBS of any format with corresponding text layers. This module has two implementations. One is built on the Sphinx Search engine, and the second is Elasticsearch.  Elasticsearch supports JSON as the only document format and is easily integrated with KG using JSON-LD for triple representation. Sphinx Search is much faster in text and database records indexing and consumes less RAM as it is implemented in C++. The choice of an engine depends on the primary document representation used in an application.
 
@@ -246,30 +252,156 @@ The metadata processing module (A1) denotes the environment capabilities for exp
 
 \section{Implementation examples}
 
-In this section, three examples of application implementation are being presented.  The first example is an MDA application in the synthesis of a Next-generation sequencing (NGS) investigation environment.  After the invention of methods of NGS and their introduction in practice of biological systems research, a new direction of molecular genetics is formed, which is referred to as \emph{metagenomics}.  The method allows biologists to describe a significant number of new groups of organisms at all taxonomic levels. A comprehensive review of present sequencing approaches and challenges is presented in~\cite{pere20}.
+In this section, three examples of application implementation are being presented.  The first example is an MDA application in the synthesis of a Next-generation sequencing (NGS) investigation environment.  After the invention of methods of NGS and their introduction in practice of biological systems research, a new direction of molecular genetics is formed, which is referred to as \emph{metagenomics}.  The method allows biologists to describe a significant number of new groups of organisms at all taxonomic levels.
 
 \subsection{Next-generation sequencing}
 \label{sec:ngs-impl}
 
+The aim of this R\&D \cite{zont19, aicts2020} is to develop software support of the processes of NGS analysis with techniques and software for a visual representation of the computational process of so-called amplicon analysis so that domain specialists would be able to compose computational pipelines, which are executed on distributed heterogeneous computing resources (clouds).  The visual models, later, are to be used for organizing the computational process and data store and articular retrieval services.
 
-The aim of this R\&D is to develop software support of the processes of NGS analysis with techniques and software for a visual representation of the computational process of so-called amplicon analysis so that domain specialists would be able to compose computational pipelines, which are executed on distributed heterogeneous computing resources (clouds).  The visual models, later, are to be used for organizing the computational process and data store and articular retrieval services.
+The tools are based on dataflow representation of various stages of NGS standard operation procedures (SOPs)  formed out of individual operations of Mothur library in Rapidminer studio Java application.  To reflect Mothur's operations we implemented source code analysis and transformation software.  The C++ sources were analyzed by Python syntax analyzer based on regular expressions and a top-level algorithm, generating a \verb|TTL| source of KG representing Mothur modules' interfaces.  That was a Computation-independent model (CIM) in the implemented MDA.  CIM transformed into the Platform-independent model (PIM), represented Mothur's modules as dataflow modules, in particular, differencing parameters to input/output dataflow ports and parameters.  The Platform-specific model (PSM), \emph{i.e.}, models of Java sources of the dataflow blocks, was constructed, in turn, from PSM.
 
-The tools are based on dataflow representation of various stages of NGS standard operation procedures (SOPs) in Rapidminer studio Java application.  /Speak about biologists involvement in the process of dataflow diagram construction. Analogous soft and integration with them/.
+All transformations was carried out with object-oriented (OO) Logtalk represented set of modules that logically infer new data descriptions of the target objects.  Thanks to OO, the transformation have two level of abstraction in its representation.  The higher one is a network of objects sending messages to each other via their interfaces.  The lower is the set of rules analyzing and producing new conclusions on generated object properties.
+
+The PSM objects must have an order in their description as they represent a models of source code to be generated.  The order is organized with blocks of \verb|assert|ed statement and subobjects sequences referencing KG elements.  Blocks can be appended and pretended with new elements.  At the stage of rendering sources, the three of blocks are traversed in-depth.  This leverages known \verb|llvmlite| open-source approach of code generation.  Figure~\ref{fig:block-seq} shows the main idea behind PSM object synthesis.
+\begin{figure}
+  \centering
+\begin{multicols}{2}
+\begin{minted}[fontsize=\scriptsize]{logtalk}
+:- object(class, specializes(code_block),
+   imports([named])). % Category of named entities
+:- public([classlist/1, methods/1, attributes/1]).
+% . . . . . . . . . . . . . .
+renderitem(Item, Result):-      % proceed with default
+    ^^renderitem(Item, Result). % rendering
+render(Result):-         % Source generator
+    ^^render(Name),      % implemented in a category
+    ( ::item(classlist(List)) ->
+     % . . . . . . . . . . .
+        [Name]) ),
+    ( ::item(attributes(Attributes))->
+     % . . . . . . . . . . .
+        [DefAttrList]),
+      Attributes::items(InstanceAttrs),
+      findall(S, ( % initialize attributes
+         % . . . . . . . . .
+         ), AttrAssigns),
+        root::unindent,
+        AttrList=[ConstructorDef|AttrAssigns];
+         % . . . . . . . . .
+        AttrList=[ConstructorDef, Pass] ),
+    ( ::item(methods(Methods))-> % If any ...
+      Methods::render(MethodList);
+      MethodList=[] ),
+    lists::append(AttrList,MethodList,StringList),
+    root::unindent, Result=[Signature|StringList].
+:- end_object.
+\end{minted}
+      \includegraphics[width=0.7\linewidth]{code_block_class.pdf}
+\end{multicols}
+  \caption{Procedure of dataflow module source code model synthesis}
+  \label{fig:block-seq}
+\end{figure}
+This example of the application of KG utilizes strongly the property of data representation flexibility for description of the software object model data as well as one central point of data store and access.  The disadvantageous properties of RDF, namely, the weak expressiveness with triples, was neglected by predicate and object encapsulation.
 
 \subsection{Education document authoring}
 \label{sec:doc-impl}
 
+This project \cite{authoring} is aimed at construction of an environment for document authoring out of user editable template elements, database query results, LOD-compliant web-pages, and other document data.  Target document is a web page which content is inferred while loaded by the browser.
+
+All document elements are either a context structures of templates filled with other elements.  A context is a RDF hierarchical representation of a document data structure.  It provides data to be filled in a current rendered template.  Document is a main template.  All elements are SW resources.  Templates can contain JavaScript subroutines for implementing special service, for example, table of contents out of CSS \verb|class| labeled subsections of the generated document.
+
+All elements are stored either in a KG as triples, or as LOD-compliant web-pages, and according to SW consideration all of them form a distributed KG.  Data access differentiation by security model is implemented programmatically as the web pages disallowing access to the restricted information.  SW has special predicates for description a possibility and location of a private data sub-KG in the open part.
+
+In Figure~\ref{fig:auth-code}, we presented our small syntactic extension of RDFa for referring template parts.  A namespace \textbf{taa} was added to define a markup interpreted as XHTML tree manipulation in the image and likeliness of open-source ZPT\footnote{Abbreviation of Zope Page Template}.  Arguments of \verb|taa:content| are subcontexts (\verb|title| and \verb|neg-UMK|) of a current template under rendering.
+\begin{figure}
+  \centering
+\begin{minted}[escapeinside=||,fontsize=\small]{text}
+<html lang="ru" xmlns=http://www.w3.org/1999/xhtml
+|\GB{xmlns:taa}|=http://irnok.net/engine/rdfa-manipulation
+xml:lang="ru" metal:define-macro="page">
+<head> . . . . </head>
+<body prefix="rdf: http://www.w3.org/1999/...-ns# foaf: http://xmlns.com/foaf/...
+imei: imei.html# course: https://irnok.net/college/plan/01..16-...\
+% D0\%BA_PB-SM.plm.xml.xlsx-....2.3.1.html#"  resource="#post"
+typeof="schema:CreativeWork sioc:Post prov:Entity">
+<!-- The application control panel -->
+
+<main lang="ru" resource="#annotation" typeof="oa:Annotation" id="main-doc-cnt">
+<div property="oa:hasTarget" resource="#course-work-prog"></div>
+<article property="oa:hasBody" typeof="foaf:Document curr:WorkingProgram"
+         resource="#course-work-program" id="main-document">
+  <div |\GB{taa:content}|="imei:title-page"></div>
+  <div |\GB{taa:content}|="imei:neg-UMK"></div>
+  <section id="TOC" class="break-after"> <h2>Table of Contents</h2>
+    <div id="tableOfContents"></div>
+  </section>
+  <section id="course-description" resource="#description"
+           property="schema:hasPart" typeof="schema:CreativeWork">
+    <div property="schema:hasPart" resource="#purpose"
+         typeof="dc:Text cnt:ContentAsText" >
+      <div property="cnt:chars" datatype="xsd:string">
+        <h2 property="dc:title" datatype="xsd:string">
+           Aims and objectives of the discipline (module)</h2>
+        <p>The aim of teaching the discipline ...</p>
+      </div>
+   </div>
+  . . . . . . . .
+\end{minted}
+  \caption{Part of a template representation}
+  \label{fig:auth-code}
+\end{figure}
+
+For document markup (document data representation), the following vocabularies are used:
+\begin{itemize}
+  \item Friend-of-a-friend (\textbf{foaf}), agent information: individuals, legal entities, program agents;
+  \item Provenance (\textbf{prov}), references between documents;
+  \item Dublin Core (\textbf{dc}), web page annotation mark up;
+  \item DBPedia resource (\textbf{dbr}), references to instant objects and classes;
+  \item Schema.org (\textbf{schema}), Google, Yandex, Yahoo, \emph{etc}. searchable objects, structural elements;
+  \item The Bibliographic Ontology (\textbf{bibo}), literature reference mark up.
+\end{itemize}
+
+The general logical structure (sections, subsections, \emph{etc.}) are represented with Open Annotation (\textbf{oa}) vocabulary originally used for annotation of already existing content. Using \textbf{oa}, the generated document is converted to PDF and other formats.  HTML5 default tag structures are used for visual sectioning and style definition.
+
+The \textbf{oa} vocabulary also used to define parts of document, which can be interactively edited after the document have been already rendered.  The obtained changes are fixed in a commit as new resources, and the containing document obtains new IRI fixing all the set of resource changes.
+
 \subsection{Web GIS on the base of a knowledge graph}
 \label{sec:gis-impl}
 
+Project \cite{gisviewer} devoted to investigate capabilities of SW and KG technologies in representation spatially distributed data (GIS\footnote{Abbreviation of Geographical Information System}-data).  The fault data \cite{lunina} are chosen as subject for representation and publishing in this investigation.  In the geology, researchers accumulate data obtained after event observations, \emph{e.g.}, earthquakes, landslides, by analyzing remote sensing data and results of field works.  The obtained data are processed and interpreted, resulting in setting new attributes to a fault or refinement of their values.  According to the techniques of geological research, additional information are associated with attributes, clarifying their values.  Such clarification comprises so-called precision characteristics, measurement conditions, reliability assessment, and paper references, where fault data were published.
 
-\section{Discussion}
+GIS represents spatial data in semantic-defined layers.  For each object of a GIS layer, one can associate a set of attribute values of auxiliary data.  The set of the attributes are the same for each object of the layer, regardless of whether the attribute value is defined for an object or not.  Empty values are represented as ``\texttt{null}''s.  In the case of geological exploration, when a lot of attributes are undefined, this approach leads to sparse filled tables.  This, in turn, requires data modification and analysis algorithms to utilize additional data checking stages when using standard relation operations (SELECT, UPDATE, DELETE).
+
+Web publication applications, as information systems, are to implement filtering functions, differentiating the value attributes and their metadata.  Screen widgets label names either defined in application configuration or figured out from the attribute names.  Lack of vocabulary formal domain definition forces developer to spend more efforts for the user interface implementation.
+
+In this project, we constructed a Web-application using contemporary Web and SW technologies for rendering a fault map, which visual content is controlled by data filters implemented as SPARQL queries to KG representing fault data.  For the purpose, a data conversion from the tabular form to KG was carried out, a CliopPatria server for data storage was installed, and data viewers for the triple sets for a common subject (a fault) has been implemented.  In Figure~\ref{fig:gis-ex} an example of the filtering and a selected object data viewing form is presented.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{faults-leaflet-doc.png}
+  % \caption{Viewer window showing description of a fault}
+  \caption{Example of GIS rendering of KG data}
+  \label{fig:gis-ex}
+\end{figure}
+
+The proposed technology and software allows one to construct Web-GIS systems for research communities, as they support constant data accumulation, aggregation and analysis thanks to the properties of knowledge graph (KG) data storage and processing.
+
+\section{Discussion and Conclusion}
 \label{sec:disc}
 
+Standardized forms of basic concepts of data representation and processing in the filed of Sematic Web (SW) research were considered in this paper.  A special attention has been paid to reviewing Knowledge Graph (KG) data storage and processing in scientific data processing software.
 
-[we tried to collaborate with software developers using traditional approaches. They are not interested as ]
+We did not consider analogous R\&D as it was already reviewed in the corresponding our publications.  Here we just present a review of obtained SW and KG technologies application experience.  The main one is the powerful capabilities of application integration, where all the set of implemented software, in fact, form a distributed environment of data processing.  The main requirement is that the data representation at storage services and in the protocol implementations should obey SW and KG standards.
 
-\section*{Conclusion}
+The main advantages of these technologies for the software developer are semantic markup and generic properties of KG, especially a possibility to postpone formal data structure definition as such declarative data are easily can be processed with a rule-based inference engine.  Scientific community results in domain description in standardized vocabularies (ontologies), user communities aggregating and formalizing data on real-world objects form a productive background for problem space description and,  in its turn, a common basis for application integration, which result in a cumulative effect of aggregation of developed software in a complex distribute data processing system and environments.
+
+Further development of the technologies include the following directions of a great interest:
+\begin{itemize}
+\item Fibered representation of KG to support consistency and completeness check by reflecting A-Box entities and their relations to template domain models;
+\item Investigate expressive capabilities of Logtalk programming language as an instrument of knowledge (rules) representation for KG processing modules;
+\item Adding extended document analysis services \cite{shigpaper} to the environment (section~\ref{sec:architecture}), which are developed in our research group;
+\item Improve integration techniques with metamodel presentation of the execution environment.
+\end{itemize}
 
 \begin{acknowledgments}
 
@@ -288,7 +420,7 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 
 \begin{thebibliography}{99}
 
-\bibitem{tbl} T.B.-L. Scientific American ...
+\bibitem{tbl} Tim Berners-Lee, James Hendler, and Ora Lassila. The semantic web: A new form of web contentthat is meaningful to computers will unleash a revolution of new possibilities. ScientificAmeri-can.com, 05 2001.
 
 \bibitem{lod} C.~Bizer, T.~Heath, T.~Berners-Lee, Linked Data -- The Story So Far. Int. J. Semantic Web Inf. Syst., 5 (2009), pp.~1--22. \doi{10.4018/jswis.2009081901}
 
@@ -312,12 +444,17 @@ The~development of the~infrastructure for Mothur command transformation to Rapid
 
 \bibitem{zont19} E.~Cherkashin, A.~Shigarov, V.~Paramonov. Representation of MDA transformation with logical objects. International Multi-Conference on Engineering, Computer and Information Sciences (SIBIRCON), Novosibirsk, Russia. (2019) 0913--0918 \doi{10.1109/SIBIRCON48586.2019.8958008}
 
+\bibitem{aicts2020} Evgeniy Cherkashin, Alexey Shigarov. Construction techniques of Baikal microbiome research information-computational environment. Proceedings for 1st International Workshop on Advanced Information and Computation Technologies and Systems. Irkutsk, Russia, December 7-11, 2020. CEUR-WS.org, online \url{http://ceur-ws.org/Vol-2858/paper2.pdf} (access date: 12-Dec-2021)
+
 \bibitem{authoring} E.~Cherkashin, A.~Shigarov, V.~Paramonov, A.~Mikhailov, Digital archives supporting document content inference, Procs. of 42-nd International Convention on Information and Communication Technology Electronics and Microelectronics (MIPRO), May 20–24, 2019. pp. 1037-1042. \doi{10.23919/MIPRO.2019.8757196}
 
-\bibitem{gisviewer} E.~Cherkashin, O.~Lunina, L.~Demyanov, A.~Tsygankov. Web-GIS viewer for active faults data represented as a knowledge graph. Proceedings for 4th Scientific-practical Workshop Information Technologies: Algorithms, Models, Systems. Irkutsk, Russia, September 14, 2021. CEUR-WS.org, online \url{http://ceur-ws.org/Vol-2984/paper8.pdf}
+\bibitem{gisviewer} E.~Cherkashin, O.~Lunina, L.~Demyanov, A.~Tsygankov. Web-GIS viewer for active faults data represented as a knowledge graph. Proceedings for 4th Scientific-practical Workshop Information Technologies: Algorithms, Models, Systems. Irkutsk, Russia, September 14, 2021. CEUR-WS.org, online \url{http://ceur-ws.org/Vol-2984/paper8.pdf} (access date: 12-Dec-2021)
 
-\bibitem{cliopatria}
-\bibitem{sibircon} Logical objects
+\bibitem{cliopatria} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen, ``ClioPatria: A
+  SWI-Prolog infrastructure for the Semantic Web,'' Semantic Web.
+  Vol. 7(5). P. 529--541 (2016) \doi{10.3233/SW-150191}
+
+\bibitem{shigpaper} Dorodnykh N.O., Yurin A.Y., Shigarov A.O. (2020) Conceptual Model Engineering for Industrial Safety Inspection Based on Spreadsheet Data Analysis. In: Simian D., Stoica L. (eds) Modelling and Development of Intelligent Systems. MDIS 2019. Communications in Computer and Information Science, vol 1126. Springer, Cham. \doi{10.1007/978-3-030-39237-6_4}
 
 \end{thebibliography}
 % \section{Online Resources}
