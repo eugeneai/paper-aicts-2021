@@ -203,23 +203,19 @@ If one of the participants has bid a limit price (for example, the minimum value
 
 Given the conditions for revenue equivalence, we can consider an all-pay auction to be equivalent to a sealed-bid first-price auction in determining value. By bidding on the limit value, the participants set the personal value of the object, sacrificing its objective value (economic effect). To resolve the disputable situation, the personal value is determined again by bidding on the amount the participant is willing to give to own the object. Since the increase in this value negatively affects the final result of the participants, it was decided not to apply the ``catch-up'' bets rule in all-pay, holding a second round only if the leading bets completely match.
 
-After the first auction pass, when the objects are pre-assigned, participants can refuse a certain number of their lots, putting them on the second pass of the auction, along with those that were unplaced on the first. In case of refusal of a lot, the participant loses the right to compete for this lot. The value of the refused lots is then determined anew (that is, the bid range is reset to the original one).
+After the first auction pass, when the objects are pre-assigned, participants can refuse a certain number of their lots, putting them on the second pass of the auction, along those were unplaced on the first. In case of refusal of a lot, the participant loses the right to compete for this lot. The value of the refused lots is then determined anew (that is, the bid range is reset to the original one).
 
 At the end of the auction, the results tally is generated to represent information about the ownership of the objects, the bids set on them, and the submitted all-pay bids.
-
 According to the game model described above, a state diagram is drawn, shown in Figure~\ref{fig:1}.
-
-
 \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{pics/statechart.png}
   \caption{Auction state model}
   \label{fig:1}
 \end{figure}
-
 This model allows simultaneous independent draw of several lots. This further increases the dynamics and cognitive complexity of the auction, forcing participants to more carefully coordinate their decisions about the value of the lots to keep pace with the pace of the auction.
 
-The described model is abstract enough and contains almost no binds to the stand domain. Therefore, the model enables solving other tasks related to the distribution of virtual resources. It is also possible to change the model implementation, if necessary, i.e., add additional rules.
+The described model is abstract enough and contains almost no binds to the stand domain. Therefore, the model enables solving other tasks related to the distribution of virtual resources. It is also possible to change the model implementation, if necessary, \emph{i.e}., add additional rules.
 
 \section{Implementation architecture}
 \label{sec:impl-arch}
@@ -228,7 +224,7 @@ A three-level hierarchical architecture is implemented as a result of the analys
 
 We note the need for stable and consistent two-way data transmission in the transport layer. The TCP protocol successfully performs it, so it became the transport core. Typed messages are sent over the established connection. Although it is possible to re-implement the stream-based protocol with length control, it was decided to use the WebSocket protocol [20]. It has high-quality implementations for most programming languages and enables further modifications (direct browser communication, TLS encryption, \emph{etc}.). Messages' size should be reduced to a reasonable minimum, so the CBOR format [21] is used, as it provides the highest serialization speed with the minimum message size [22].
 
-To minimize network traffic between levels, atomic state changes (denoted as effects) are transmitted instead of the new state to minimize network traffic between levels. An effect is generated for each event and passed to all child nodes. The full state is transmitted only when the game session is completely restarted and when the child node is reconnected (in future iterations, it is possible to implement persistent caching and full synchronization of such a state).
+To minimize network traffic between levels, atomic state changes (hereafter denoted as \emph{effects}) are transmitted instead of the new state to minimize network traffic between levels. An effect is generated for each event and passed to all child nodes. The full state is transmitted only when the game session is completely restarted and when the child node is reconnected (in future iterations, it is possible to implement persistent caching and full synchronization of such a state).
 When considering the game state, the effects are following:
 \begin{itemize}
 \item the game state change (for example, the start of the auction is the transition from preparation to the active state);
