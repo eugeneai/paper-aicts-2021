@@ -288,7 +288,7 @@ All three programs are launched at the system level as Systemd services configur
 
 The developed auction environment was tested at events as part of the third version of the STIES stand. From autumn 2019 to spring 2021, the powerstand was used at two all-Russian events, which are the finals of the ``Intelligent Energy Systems'' profile of the NTI Kruzhok Movement Olympiad (referred to as NTO) in 2020 and 2021, respectively. These activities allowed to perform live testing of the auction environment in the conditions of intense engineering competition to personally observe the user experience, which made it possible to identify the weak and strong points of the developed system and identify areas for further research and development.
 
-\paragraph{Distributed scenario}
+\paragraph{Distributed scenario.}
 \label{sec:eval-distr}
 The final “Intelligent Energy Systems” profile of the NTO in 2020 was held from March 10 to 14. 60 schoolchildren from different cities of Russia, united in 13 teams, competed in a shared virtual environment while physically being in three different places:
 school №709 Moscow (4 teams),
@@ -296,9 +296,9 @@ Tyumen State University (5 teams),
 Novosibirsk State Technical University (4 teams).
 It is worth noting that this was the first approbation of the updated auction system, and the specified configuration is the maximum on which the powerstand has ever been operated. The testing was successful. Thanks to the optimized architecture, the delays between state changes averaged no more than 1 second due to the processing of the JSON packet in the web interface. The peak delay was about 3 seconds, caused by problems with the Internet channel at the Novosibirsk site.
 
-\paragraph{High-load local scenario}
+\paragraph{High-load local scenario.}
 \label{sec:eval-high}
-From March 29 to April 3, 2021, Tyumen State University hosted the finals of the "Intelligent Energy Systems" profile of the NTO. 10 teams took part in this final. But due to organizational difficulties, all teams were placed on the same site. It meant the need to configure a set of stands for 10 participants. It became the primary technical challenge of the event. So, 4 stands were set up (and, accordingly, 4 servers), the game core and auction relay were placed on one of these servers, the rest of the necessary components were placed on the rest. All computers (4 servers and 10 terminals) were connected to the same physical network with a router.
+From March 29 to April 3, 2021, Tyumen State University hosted the finals of the ``Intelligent Energy Systems'' profile of the NTO. Ten teams took part in this final. But due to organizational difficulties, all teams were placed on the same site. It meant the need to configure a set of stands for 10 participants. It became the primary technical challenge of the event. So, 4 stands were set up (and, accordingly, 4 servers), the game core and auction relay were placed on one of these servers, the rest of the necessary components were placed on the rest. All computers (4 servers and 10 terminals) were connected to the same physical network with a router.
 
 The event was a success. The auction environment worked well in a local high-load configuration, providing minimal delays in terms of UI perception: state change delays were no more than a second. Moreover, they were caused mainly by the processing of the JSON packet in the browser, and if we do not take them into account, there were practically no delays in data transfer. The maximum size of a LAN packet transmitted was about 60 kibibytes (the CBOR-serialized game state sent on reconnecting or starting a new game session).
 
@@ -320,7 +320,7 @@ User experience gained during trial runs of the system during development and ev
 
 Most of the possible issues are related to SSH tunneling. SSH uses TCP as the base protocol. Using TCP in the internal protocol is redundant and carries the risk of destabilizing the channel [30]. In practice, SSH tunnels did not harm the environment operation.
 
-Being based on SSH tunnels, the architecture configuration is static at the system level, and connections are made according to the “allow list” principle, which is why any change in the architecture requires the action of developers. At the same time, authentication is currently absent, and the player is determined through the mediator configuration based on the trust of the nodes for each other. At the same time, the implementation of the authorization will be required only in scenarios for operating the module outside the current architecture and can be implemented in the future.
+Being based on SSH tunnels, the architecture configuration is static at the system level, and connections are made according to the “allow list” principle, that is why any change in the architecture requires the interference of developers. At the same time, authentication is currently absent, and the player is determined through the mediator configuration based on the trust of the nodes for each other. At the same time, the implementation of the authorization will be required only in scenarios for operating the module outside the current architecture and can be implemented in the future.
 
 Thus, the choice of architecture implementation at this stage is considered justified, taking all factors into account. Nevertheless, it makes sense to apply developments to increase the speed and reduce delays in SSH tunneling [31,32]. Alternatively, even abandon SSH tunnels in favor of other transport protocols, such as a Secure WebSocket with a well-built authorization. It will assume the complexity additions to the software layer but is considered in the future.
 
